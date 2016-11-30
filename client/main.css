@@ -1,2 +1,95 @@
 body {
 }
+
+#wrap {
+    margin-top: 53px;
+    margin-bottom: 53px;
+}
+
+/* Picture frame */
+.picture-preview-row {
+    display: flex;
+    margin-top: 20px;
+    overflow: auto;
+    /*margin-left: 5px;*/
+}
+
+/*@media only screen and (max-width: 992px) {*/
+/*.picture-preview-row {*/
+/*overflow: auto;*/
+/*-webkit-overflow-scrolling: touch*/
+/*}*/
+/*}*/
+
+.pic-preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 auto;
+}
+
+.pic-preview-wrap {
+    /*height: 110px;*/
+    width: 110px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 1px solid #EEEEEE;
+}
+
+.pic-preview-wrap-no-border {
+    width: 110px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+    .pic-preview-wrap-no-border {
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.pic-preview-wrap > i {
+    position: absolute;
+    display: none;
+    pointer-events: initial;
+}
+
+.pic-preview-wrap:hover > i {
+    display: block;
+}
+
+.pic-preview-wrap > i:hover {
+    cursor: pointer;
+}
+
+.pic-preview-wrap .material-placeholder,
+.pic-preview-wrap-no-border .material-placeholder {
+    margin: 0 auto;
+}
+
+/* Button file input */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}

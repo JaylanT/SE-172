@@ -1,0 +1,53 @@
+<template name="sell">
+    <div class="container" id="wrap">
+        <form>
+            <div class="card-panel">
+                <h5 class="red-text">Sell</h5>
+
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input name="title" id="post-title" type="text" class="validate" required>
+                        <label for="post-title">Post title</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select id="post-category">
+                            {{> categories}}
+                        </select>
+                        <label>Category</label>
+                    </div>
+                    <div class="input-field col s12" id="wage-fixed-div">
+                        <input name="price" id="post-price" type="number" min="0" step="0.01" class="validate" required>
+                        <label for="post-price">Price</label>
+                    </div>
+                    <div class="input-field col s12">
+                    <textarea name="description" id="post-description-textarea" class="materialize-textarea" maxlength="2000"
+                              required></textarea>
+                        <label for="post-description-textarea">Description</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input name="city" id="post-city" type="text" class="validate" value="{{city}}" required>
+                        <label class="active" for="post-city">City</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input name="state" id="post-state" type="text" class="validate" value="{{state}}" required>
+                        <label class="active" for="post-state">State</label>
+                    </div>
+                    <div class="col s12">
+                        <label>{{picLimitLabel}}</label><br>
+                        <span class="btn btn-file waves-effect waves-light red {{#if picLimitReached}}disabled{{/if}}">
+                        Add Pictures <input id="post-pictures" type="file" accept="image/*" multiple>
+                    </span>
+                    </div>
+                    <div class="picture-preview-row col s12">
+                        {{#each pictures}}
+                            {{> pictureFrame}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <button class="btn-large waves-effect waves-light red right" type="submit">List It</button>
+            </div>
+        </form>
+    </div>
+</template>
