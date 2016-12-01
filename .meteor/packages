@@ -27,3 +27,5 @@ kadira:flow-router
 kadira:blaze-layout
 ostrio:files
 http
+okgrow:router-autoscroll
+fastclick

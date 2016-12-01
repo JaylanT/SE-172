@@ -5,12 +5,13 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import './login.html';
 
 Template.login.events({
-    'submit form'(e, t) {
+    'submit form'(event, t) {
         // prevent page reload on submit event
-        e.preventDefault();
+        event.preventDefault();
+        const target = event.target;
 
-        const email = t.find('#email').value.toLowerCase(),
-            password = t.find('#password').value;
+        const email = target.email.value.toLowerCase(),
+            password = target.password.value;
 
         if (email === '' || password === '') {
             Materialize.toast('Please complete all fields!', 4000, 'toast-error');
@@ -25,9 +26,11 @@ Template.login.events({
                     Materialize.toast('You have entered an invalid email or password. Please try again.', 4000, 'toast-error');
                 }
             } else {
-                // Accounts.onLogin below runs before this callback
-                FlowRouter.go('/');
+                $('#login-modal').closeModal();
             }
         });
+    },
+    'click #signup-link'(event) {
+        $('#signup-modal').openModal();
     }
 });

@@ -9,3 +9,9 @@ Template.nav.onRendered(() => {
     });
     $(".dropdown-button").dropdown();
 });
+
+Template.nav.events({
+    'click #login'() {
+        $('#login-modal').openModal();
+    }
+});

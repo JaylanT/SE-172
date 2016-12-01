@@ -1,33 +1,35 @@
 <template name="signup">
-    <div id="signup-container" class="container animated fadeIn">
-        <h4 class="center">Register</h4>
-
-        <div id="signup-form" class="card-panel row">
-            <form class="col s12">
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <h4>Register</h4>
+            <form id="signup-form">
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input id="first-name" type="text" class="validate" autofocus required>
+                        <input id="first-name" name="firstName" type="text" class="validate" autofocus required>
                         <label for="first-name">First Name</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="last-name" type="text" class="validate" required>
+                        <input id="last-name" name="lastName" type="text" class="validate" required>
                         <label for="last-name">Last Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate" required>
+                        <input id="email" name="email" type="email" class="validate" required>
                         <label for="email">Email</label>
                     </div>
-                    <div class="input-field col s12">
-                        <input id="password" type="password" class="validate" minlength="6" required>
+                    <div class="input-field col s12 m6">
+                        <input id="password" name="password" type="password" class="validate" minlength="6" required>
                         <label for="password">Password</label>
                     </div>
-                    <div class="input-field col s12">
-                        <input id="confirm-password" type="password" class="validate" minlength="6" required>
+                    <div class="input-field col s12 m6">
+                        <input id="confirm-password" name="confirmPassword" type="password" class="validate" minlength="6" required>
                         <label for="confirm-password">Confirm Password</label>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light red darken-3" type="submit">Register</button>
+                <button class="btn waves-effect waves-light red darken-3" type="submit">Sign Up</button>
             </form>
+        </div>
+        <div class="modal-footer center">
+            <a id="login-link" href="#!" class="modal-action modal-close">Already a member? Login</a>
         </div>
     </div>
 </template>
