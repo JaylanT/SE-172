@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 export const Pictures = new FilesCollection({
+    storagePath: '/data/Meteor/uploads/',
     collectionName: 'Pictures',
     allowClientCode: false, // Disallow remove files from Client
     onBeforeUpload: function (file) {
