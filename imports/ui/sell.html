@@ -10,7 +10,7 @@
                         <label for="post-title">Post title</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <select id="post-category">
+                        <select id="post-category" name="category">
                             {{> categories}}
                         </select>
                         <label for="post-category">Category</label>
@@ -31,6 +31,10 @@
                     <div class="input-field col s12 m6">
                         <input name="state" id="post-state" type="text" class="validate" value="{{state}}" required>
                         <label class="active" for="post-state">State</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input name="phone" id="post-phone" type="tel" class="validate">
+                        <label for="post-phone">Phone number (optional)</label>
                     </div>
                     <div class="col s12">
                         <label>{{picLimitLabel}}</label><br>

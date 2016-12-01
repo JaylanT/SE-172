@@ -18,11 +18,13 @@ if (Meteor.isServer) {
 Meteor.methods({
     'listings.insert'(listing) {
         check(listing, {
-           title: String,
+            title: String,
+            category: String,
             price: Number,
             description: String,
             city: String,
             state: String,
+            phone: Match.Optional(String),
             pictureIds: Match.Where(ids => {
                 check(ids, [String]);
                 return ids.length >= 0 && ids.length < 5;

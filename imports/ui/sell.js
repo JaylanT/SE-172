@@ -60,7 +60,7 @@ Template.sell.helpers({
         return 'Add up to ' + (4 - TempPictures.find().count()) + ' more';
     },
     picLimitReached() {
-        return false;
+        return TempPictures.find().count() === 4;
     },
 });
 
@@ -102,25 +102,34 @@ Template.sell.events({
 
         const target = event.target;
         const title = target.title.value,
+            category = target.category.value,
             price = Number(target.price.value),
             description = target.description.value,
             city = target.city.value,
-            state = target.state.value;
+            state = target.state.value,
+            phone = target.phone.value;
+
+        if (category === '') {
+            Materialize.toast('Please select a category', 4000, 'toast-error');
+            return;
+        }
 
         const pictureIds = [],
             pictures = TempPictures.find().fetch();
 
         const listing = {
             title: title,
+            category: category,
             price: price,
             description: description,
             city: city,
             state: state,
+            phone: phone,
             pictureIds: pictureIds
         };
 
         if (pictures.length === 0) {
-            Meteor.call('listings.insert', listing);
+            insertListing(listing);
         } else {
             pictures.forEach(blob => {
                 const upload = Pictures.insert({
@@ -131,19 +140,12 @@ Template.sell.events({
 
                 upload.on('end', (error, fileObj) => {
                     if (error) {
-                        alert('Error during upload: ' + error);
+                        Materialize.toast('Error during upload: ' + error, 4000, 'toast-error');
                     } else {
                         pictureIds.push(fileObj._id);
 
                         if (pictureIds.length === pictures.length) {
-                            Meteor.call('listings.insert', listing, (err, result) => {
-                                if (err) {
-                                    console.log(err);
-                                    Materialize.toast('An error has occurred.', 4000, 'toast-error');
-                                } else {
-                                    FlowRouter.go('/');
-                                }
-                            });
+                            insertListing(listing);
                         }
                     }
                 });
@@ -151,3 +153,14 @@ Template.sell.events({
         }
     }
 });
+
+function insertListing(listing) {
+    Meteor.call('listings.insert', listing, (err, result) => {
+        if (err) {
+            console.log(err);
+            Materialize.toast('An error has occurred.', 4000, 'toast-error');
+        } else {
+            FlowRouter.go('/');
+        }
+    });
+}

@@ -1,9 +1,19 @@
 body {
+    background: #fafafa;
+}
+
+@font-face {
+    font-family: BebasNeue; font-weight: bold; src: url('/fonts/BebasNeue Bold.otf');
 }
 
 #wrap {
     margin-top: 40px;
     margin-bottom: 40px;
+}
+
+.brand-logo {
+    font-family: BebasNeue, sans-serif;
+    font-size: 2.3rem !important;
 }
 
 /* Picture frame */
