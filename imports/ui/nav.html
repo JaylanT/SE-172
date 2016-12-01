@@ -6,6 +6,9 @@
                 <ul class="right hide-on-med-and-down">
                     {{#if currentUser}}
                         <li><a href="/sell">Sell</a></li>
+                    {{else}}
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/signup">Register</a></li>
                     {{/if}}
                     <li><a>{{> loginButtons}}</a></li>
                 </ul>

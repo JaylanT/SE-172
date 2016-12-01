@@ -1,0 +1,11 @@
+#signup-container, #login-container {
+    /*margin-top: 5.5%;*/
+    /*margin-bottom: 5.5%;*/
+    margin-top: 40px;
+    max-width: 500px;
+}
+
+#signup-container h4, #login-container h4 {
+    margin-bottom: 30px;
+    /*color: rgba(255,255,255,.95);*/
+}

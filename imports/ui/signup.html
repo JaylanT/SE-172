@@ -1,0 +1,33 @@
+<template name="signup">
+    <div id="signup-container" class="container animated fadeIn">
+        <h4 class="center">Register</h4>
+
+        <div id="signup-form" class="card-panel row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="first-name" type="text" class="validate" autofocus required>
+                        <label for="first-name">First Name</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="last-name" type="text" class="validate" required>
+                        <label for="last-name">Last Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" minlength="6" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="confirm-password" type="password" class="validate" minlength="6" required>
+                        <label for="confirm-password">Confirm Password</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</template>
