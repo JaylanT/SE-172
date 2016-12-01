@@ -10,9 +10,18 @@
                         <li><a href="/login">Login</a></li>
                         <li><a href="/signup">Register</a></li>
                     {{/if}}
-                    <li><a>{{> loginButtons}}</a></li>
+                    <li>
+                        <a class="dropdown-button {{#unless currentUser}}hide{{/unless}}" href="#!"
+                           data-activates="nav-dropdown" data-beloworigin="true">{{#if currentUser}}{{currentUser.profile.firstName}}{{/if}}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                    <!--<li><a>{{> loginButtons}}</a></li>-->
                 </ul>
             </div>
+            <ul id="nav-dropdown" class="dropdown-content">
+                <li><a href="/logout">Logout</a></li>
+            </ul>
         </nav>
     </div>
 </template>

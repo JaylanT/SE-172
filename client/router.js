@@ -1,6 +1,7 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
+import '../imports/ui/nav.js';
 import '../imports/ui/todos.js';
 import '../imports/ui/sell.js';
 import '../imports/ui/browse.js';
@@ -48,5 +49,13 @@ loggedIn.route('/sell', {
 FlowRouter.route('/listing/:id', {
     action(params, queryParams) {
         BlazeLayout.render('mainLayout', { top: 'nav', content: 'listing' });
+    }
+});
+
+loggedIn.route('/logout', {
+    action(params, queryParams) {
+        Meteor.logout(err => {
+            FlowRouter.go('/');
+        })
     }
 });
