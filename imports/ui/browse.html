@@ -1,0 +1,28 @@
+<template name="listings">
+    <div class="container" id="wrap">
+        <div class="row">
+            {{#each listings}}
+                {{> listingCard}}
+            {{/each}}
+        </div>
+    </div>
+</template>
+
+<template name="listingCard">
+    <div class="col s12 m6 l3">
+        <a href="/listing/{{_id}}">
+            <div class="card small hoverable">
+                {{#if pictureIds}}
+                    <div class="card-image">
+                        <img src="{{picture.link}}" alt="{{picture.name}}">
+                    </div>
+                {{/if}}
+                <div class="card-content">
+                    <p>{{title}}</p>
+                    <p>${{price}}</p>
+                    <p>{{city}}, {{state}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</template>

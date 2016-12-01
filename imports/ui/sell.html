@@ -2,7 +2,7 @@
     <div class="container" id="wrap">
         <form>
             <div class="card-panel">
-                <h5 class="red-text">Sell</h5>
+                <h5 >Sell</h5>
 
                 <div class="row">
                     <div class="input-field col s12 m6">
@@ -13,9 +13,9 @@
                         <select id="post-category">
                             {{> categories}}
                         </select>
-                        <label>Category</label>
+                        <label for="post-category">Category</label>
                     </div>
-                    <div class="input-field col s12" id="wage-fixed-div">
+                    <div class="input-field col s12">
                         <input name="price" id="post-price" type="number" min="0" step="0.01" class="validate" required>
                         <label for="post-price">Price</label>
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col s12">
                         <label>{{picLimitLabel}}</label><br>
-                        <span class="btn btn-file waves-effect waves-light red {{#if picLimitReached}}disabled{{/if}}">
+                        <span class="btn btn-file waves-effect waves-light {{#if picLimitReached}}disabled{{/if}}">
                         Add Pictures <input id="post-pictures" type="file" accept="image/*" multiple>
                     </span>
                     </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="clearfix">
-                <button class="btn-large waves-effect waves-light red right" type="submit">List It</button>
+                <button class="btn-large waves-effect waves-light right" type="submit">List It</button>
             </div>
         </form>
     </div>

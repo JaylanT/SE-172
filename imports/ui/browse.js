@@ -3,9 +3,9 @@ import { Template } from 'meteor/templating';
 import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
 
-import './listings.html';
+import './browse.html';
 
-Template.listings.onCreated(function bodyOnCreated() {
+Template.listings.onCreated(function () {
     Meteor.subscribe('listings');
 });
 
@@ -15,13 +15,12 @@ Template.listings.helpers({
     },
 });
 
-Template.listing.onCreated(function bodyOnCreated() {
+Template.listingCard.onCreated(function () {
     Meteor.subscribe('files.pictures.all');
 });
 
-Template.listing.helpers({
+Template.listingCard.helpers({
     picture() {
-        console.log(Pictures.findOne());
-        return Pictures.findOne();
+        return Pictures.findOne(this.pictureIds[0]);
     }
 });

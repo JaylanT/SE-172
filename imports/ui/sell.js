@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Pictures } from '../api/pictures.js';
 
@@ -67,8 +68,8 @@ Template.sell.events({
     'change #post-pictures'(e) {
         const files = e.target.files;
         for (let i = 0; i < files.length; i++) {
-            if (files[i].size > 1048576) {
-                Materialize.toast('File size cannot exceed 1MB.', 4000, 'toast-error');
+            if (files[i].size > 2097152) {
+                Materialize.toast('File size cannot exceed 2MB.', 4000, 'toast-error');
                 return;
             }
         }
@@ -80,7 +81,12 @@ Template.sell.events({
         for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
 
-            reader.onload = ev => TempPictures.insert({picture: ev.target.result});
+            reader.onload = ev => {
+                TempPictures.insert({
+                    picture: ev.target.result,
+                    name: files[i].name
+                });
+            };
             reader.readAsDataURL(files[i]);
         }
 
@@ -96,7 +102,7 @@ Template.sell.events({
 
         const target = event.target;
         const title = target.title.value,
-            price = target.price.value,
+            price = Number(target.price.value),
             description = target.description.value,
             city = target.city.value,
             state = target.state.value;
@@ -120,7 +126,7 @@ Template.sell.events({
                 const upload = Pictures.insert({
                     file: blob.picture,
                     isBase64: true,
-                    fileName: 'test.png'
+                    fileName: blob.name
                 });
 
                 upload.on('end', (error, fileObj) => {
@@ -130,7 +136,14 @@ Template.sell.events({
                         pictureIds.push(fileObj._id);
 
                         if (pictureIds.length === pictures.length) {
-                            Meteor.call('listings.insert', listing);
+                            Meteor.call('listings.insert', listing, (err, result) => {
+                                if (err) {
+                                    console.log(err);
+                                    Materialize.toast('An error has occurred.', 4000, 'toast-error');
+                                } else {
+                                    FlowRouter.go('/');
+                                }
+                            });
                         }
                     }
                 });

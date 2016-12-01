@@ -2,9 +2,12 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper container">
-                <a href="/" class="brand-logo">Market</a>
+                <a href="/" class="brand-logo">Markt</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="/sell">Sell</a></li>
+                    {{#if currentUser}}
+                        <li><a href="/sell">Sell</a></li>
+                    {{/if}}
+                    <li><a>{{> loginButtons}}</a></li>
                 </ul>
             </div>
         </nav>
