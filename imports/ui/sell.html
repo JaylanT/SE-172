@@ -2,7 +2,7 @@
     <div class="container animated fadeIn" id="wrap">
         <form>
             <div class="card-panel">
-                <h4 id="header-sell">Sell</h4>
+                <h4>Sell</h4>
 
                 <div class="row">
                     <div class="input-field col s12 m6">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col s12">
                         <label>{{picLimitLabel}}</label><br>
-                        <span class="btn btn-file waves-effect waves-light {{#if picLimitReached}}disabled{{/if}}">
+                        <span class="btn btn-file waves-effect waves-light red darken-3 {{#if picLimitReached}}disabled{{/if}}">
                         Add Pictures <input id="post-pictures" type="file" accept="image/*" multiple>
                     </span>
                     </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="clearfix">
-                <button class="btn-large waves-effect waves-light right" type="submit">List It</button>
+                <button class="btn-large waves-effect waves-light right red darken-3" type="submit">List It</button>
             </div>
         </form>
     </div>
