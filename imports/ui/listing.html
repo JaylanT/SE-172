@@ -6,6 +6,9 @@
                 <p>${{price}}</p>
                 <p>Description</p>
                 <p>{{description}}</p>
+                {{#each pictureIds}}
+                    <img src="{{picture this}}" alt="{{picture.name}}">
+                {{/each}}
             </div>
         {{/with}}
     </div>
