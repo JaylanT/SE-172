@@ -13,6 +13,10 @@ Template.listing.onCreated(function () {
     Meteor.subscribe('files.pictures.all');
 });
 
+Template.listing.onRendered(function () {
+    $('.carousel').carousel();
+});
+
 Template.listing.helpers({
     listing() {
         const listingId = FlowRouter.getParam('id');
@@ -23,5 +27,18 @@ Template.listing.helpers({
 
         if (picture)
             return picture.link();
+    },
+    isOwner(ownerId) {
+        return Meteor.userId() === ownerId;
+    }
+});
+
+Template.listing.events({
+    'click #remove-listing'() {
+        Meteor.call('listings.remove', this._id, (err, result) => {
+            if (!err) {
+                FlowRouter.go('/');
+            }
+        });
     }
 });

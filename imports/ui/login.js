@@ -1,11 +1,11 @@
-import { Accounts } from 'meteor/accounts-base'
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import './login.html';
 
 Template.login.events({
-    'submit form'(event, t) {
+    'submit form'(event) {
         // prevent page reload on submit event
         event.preventDefault();
         const target = event.target;
@@ -20,17 +20,14 @@ Template.login.events({
 
         Meteor.loginWithPassword(email, password, err => {
             if (err) {
-                if (err.reason === 'Login forbidden') {
-                    Materialize.toast('Account not yet verified. Please check your email.', 4000, 'toast-error');
-                } else {
-                    Materialize.toast('You have entered an invalid email or password. Please try again.', 4000, 'toast-error');
-                }
+                Materialize.toast('You have entered an invalid email or password. Please try again.', 4000, 'toast-error');
             } else {
                 $('#login-modal').closeModal();
             }
         });
     },
-    'click #signup-link'(event) {
+    'click #signup-link'() {
         $('#signup-modal').openModal();
+        $('#first-name').focus();
     }
 });

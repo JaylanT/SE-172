@@ -59,5 +59,6 @@ Template.signup.events({
     },
     'click #login-link'() {
         $('#login-modal').openModal();
+        $('#email').focus();
     }
 });

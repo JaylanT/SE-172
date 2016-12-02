@@ -11,7 +11,7 @@ Template.listings.onCreated(function () {
 
 Template.listings.helpers({
     listings() {
-        return Listings.find({}, { sort: { createdAt: -1 } });
+        return Listings.find({}, { sort: { createdAt: -1 }, limit: 20 });
     },
 });
 

@@ -1,15 +1,24 @@
 <template name="listing">
     <div class="container animated fadeIn" id="wrap">
         {{#with listing}}
-            <div class="card-panel">
-                <h5>{{title}}</h5>
-                <p>{{category}}</p>
-                <p>${{price}}</p>
-                <p>Description</p>
-                <p>{{description}}</p>
-                {{#each pictureIds}}
-                    <img src="{{picture this}}" alt="{{picture.name}}">
-                {{/each}}
+            <div class="row card-panel">
+                {{#if isOwner owner}}
+                    <button id="remove-listing" class="btn waves-effect waves-light red darken-3">Delete</button>
+                {{/if}}
+                {{#if pictureIds}}
+                    <div class="col m5 s12 carousel" data-indicators="true">
+                        {{#each pictureIds}}
+                            <a class="carousel-item"><img src="{{picture this}}" alt="{{picture.name}}"></a>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                <div class="col m6 s12 offset-m1">
+                    <h5>{{title}}</h5>
+                    <p>{{category}}</p>
+                    <p>${{price}}</p>
+                    <p>Description</p>
+                    <p>{{description}}</p>
+                </div>
             </div>
         {{/with}}
     </div>

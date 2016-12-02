@@ -8,7 +8,7 @@
                     {{#if currentUser}}
                         <li><a href="/sell">Sell</a></li>
                     {{else}}
-                        <li><a id="login" href="#">Login</a></li>
+                        <li><a id="login" href="#">Login/Register</a></li>
                     {{/if}}
                     <li>
                         <a class="dropdown-button {{#unless currentUser}}hide{{/unless}}" href="#!"
@@ -22,7 +22,7 @@
                         <li><a href="/sell">Sell</a></li>
                         <li><a class="red-text text-darken-3" href="/logout">Logout</a></li>
                     {{else}}
-                        <li><a href="/login">Login</a></li>
+                        <li><a id="login" href="#">Login/Register</a></li>
                     {{/if}}
                 </ul>
             </div>

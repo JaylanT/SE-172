@@ -1,8 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '/imports/ui/nav.js';
-import '/imports/ui/todos.js';
 import '/imports/ui/sell.js';
 import '/imports/ui/browse.js';
 import '/imports/ui/listing.js';
@@ -50,6 +50,6 @@ loggedIn.route('/logout', {
     action(params, queryParams) {
         Meteor.logout(err => {
             FlowRouter.go('/');
-        })
+        });
     }
 });

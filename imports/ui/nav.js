@@ -13,5 +13,6 @@ Template.nav.onRendered(() => {
 Template.nav.events({
     'click #login'() {
         $('#login-modal').openModal();
+        $('#email').focus();
     }
 });
