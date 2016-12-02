@@ -11,6 +11,9 @@ if (Meteor.isServer) {
     Meteor.publish('singleListing', id => {
         return Listings.find(id);
     });
+    Meteor.publish('myListings', () => {
+        return Listings.find({ owner: this.userId });
+    });
 }
 
 Meteor.methods({
