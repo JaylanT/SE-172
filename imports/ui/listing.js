@@ -5,12 +5,13 @@ import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
 
 import './listing.html';
+import './remove-listing-modal.html';
 
 Template.listing.onCreated(function () {
     const listingId = FlowRouter.getParam('id');
 
-    Meteor.subscribe('singleListing', listingId);
-    Meteor.subscribe('files.pictures.all');
+    this.subscribe('singleListing', listingId);
+    this.subscribe('files.pictures.all');
 });
 
 Template.listing.onRendered(function () {
@@ -33,12 +34,15 @@ Template.listing.helpers({
     }
 });
 
+let listingToRemove;
+
 Template.listing.events({
     'click #remove-listing'() {
-        Meteor.call('listings.remove', this._id, (err, result) => {
-            if (!err) {
-                FlowRouter.go('/');
-            }
-        });
+        listingToRemove = this._id;
+        $('#confirm-remove-listing-modal').openModal();
+    },
+    'click #remove-listing-confirm'() {
+        Meteor.call('listings.remove', listingToRemove);
+        listingToRemove = "";
     }
 });

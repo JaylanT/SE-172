@@ -6,7 +6,7 @@ import { Pictures } from '../api/pictures.js';
 import './browse.html';
 
 Template.listings.onCreated(function () {
-    Meteor.subscribe('listings');
+    this.subscribe('listings');
 });
 
 Template.listings.helpers({
@@ -16,7 +16,7 @@ Template.listings.helpers({
 });
 
 Template.listingCard.onCreated(function () {
-    Meteor.subscribe('files.pictures.all');
+    this.subscribe('files.pictures.all');
 });
 
 Template.listingCard.helpers({

@@ -11,7 +11,7 @@ if (Meteor.isServer) {
     Meteor.publish('singleListing', id => {
         return Listings.find(id);
     });
-    Meteor.publish('myListings', () => {
+    Meteor.publish('myListings', function () {
         return Listings.find({ owner: this.userId });
     });
 }
@@ -39,7 +39,7 @@ Meteor.methods({
         listing.createdAt = new Date();
         listing.owner = this.userId;
 
-        Listings.insert(listing);
+        return Listings.insert(listing);
     },
     'listings.remove'(listingId) {
         check(listingId, String);

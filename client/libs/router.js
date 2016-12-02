@@ -8,6 +8,7 @@ import '/imports/ui/browse.js';
 import '/imports/ui/listing.js';
 import '/imports/ui/signup.js';
 import '/imports/ui/login.js';
+import '/imports/ui/my-listings.js';
 
 const loggedIn = FlowRouter.group({
     // Redirects to login if not logged in
@@ -51,5 +52,11 @@ loggedIn.route('/logout', {
         Meteor.logout(err => {
             FlowRouter.go('/');
         });
+    }
+});
+
+loggedIn.route('/mylistings', {
+    action(params, queryParams) {
+        BlazeLayout.render('mainLayout', { top: 'nav', content: 'myListings' });
     }
 });

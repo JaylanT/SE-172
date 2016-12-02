@@ -28,9 +28,7 @@ Template.sell.onCreated(function() {
             });
     });
 
-    TempPictures = new Mongo.Collection(null);
-
-    Meteor.subscribe('files.pictures.all');
+    TempPhotos = new Mongo.Collection(null);
 });
 
 Template.sell.onRendered(function () {
@@ -52,15 +50,15 @@ Template.sell.helpers({
         }
     },
     pictures() {
-        return TempPictures.find();
+        return TempPhotos.find();
     },
     picLimitLabel() {
-        if (!TempPictures.findOne()) return 'Add up to 4 pictures';
+        if (!TempPhotos.findOne()) return 'Add up to 4 photos';
 
-        return 'Add up to ' + (4 - TempPictures.find().count()) + ' more';
+        return 'Add up to ' + (4 - TempPhotos.find().count()) + ' more';
     },
     picLimitReached() {
-        return TempPictures.find().count() === 4;
+        return TempPhotos.find().count() === 4;
     },
 });
 
@@ -73,7 +71,7 @@ Template.sell.events({
                 return;
             }
         }
-        if (files.length + TempPictures.find().count() > 4) {
+        if (files.length + TempPhotos.find().count() > 4) {
             Materialize.toast('Picture limit exceeded.', 4000, 'toast-error');
             return;
         }
@@ -82,7 +80,7 @@ Template.sell.events({
             const reader = new FileReader();
 
             reader.onload = ev => {
-                TempPictures.insert({
+                TempPhotos.insert({
                     picture: ev.target.result,
                     name: files[i].name
                 });
@@ -95,7 +93,7 @@ Template.sell.events({
         picInput.replaceWith(picInput = picInput.clone(true));
     },
     'click .remove-picture'() {
-        TempPictures.remove(this);
+        TempPhotos.remove(this);
     },
     'submit form'(event) {
         event.preventDefault();
@@ -115,7 +113,7 @@ Template.sell.events({
         }
 
         const pictureIds = [],
-            pictures = TempPictures.find().fetch();
+            pictures = TempPhotos.find().fetch();
 
         const listing = {
             title: title,
@@ -155,12 +153,12 @@ Template.sell.events({
 });
 
 function insertListing(listing) {
-    Meteor.call('listings.insert', listing, (err, result) => {
+    Meteor.call('listings.insert', listing, (err, id) => {
         if (err) {
             console.log(err);
             Materialize.toast('An error has occurred.', 4000, 'toast-error');
         } else {
-            FlowRouter.go('/');
+            FlowRouter.go('/listing/' + id);
         }
     });
 }
