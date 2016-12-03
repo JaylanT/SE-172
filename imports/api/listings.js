@@ -43,6 +43,7 @@ Meteor.methods({
             city: String,
             state: String,
             phone: Match.Optional(String),
+            email: Match.Optional(String),
             pictureIds: Match.Where(ids => {
                 check(ids, [String]);
                 return ids.length < 5;

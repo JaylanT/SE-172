@@ -14,3 +14,7 @@
 #remove-listing > i {
     font-size: 1.6rem;
 }
+
+#photo-carousel {
+    margin-top: 10px;
+}

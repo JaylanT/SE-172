@@ -7,17 +7,29 @@
                         {{#if pictureIds}}
                             {{> photoCarousel}}
                         {{/if}}
-                        <div class="col m6 s12">
+                        <div class="col {{#if pictureIds}}m6{{else}}m12{{/if}} s12">
                             {{#if isOwner owner}}
                                 <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
                                     <i class="material-icons">clear</i>
                                 </button>
                             {{/if}}
                             <h5>{{title}}</h5>
-                            <p>{{category}}</p>
-                            <p>${{price}}</p>
-                            <p>Description</p>
-                            <p>{{description}}</p>
+                            <div class="section">
+                                <p>{{category}}</p>
+                                <p>${{price}}</p>
+                                <p>Description:</p>
+                                <p>{{description}}</p>
+                            </div>
+
+                            <div class="section">
+                                <div class="divider"></div>
+                                {{#if phone}}
+                                    <p>Phone: {{phone}}</p>
+                                {{/if}}
+                                {{#if email}}
+                                    <p>Email: {{email}}</p>
+                                {{/if}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +46,7 @@
     <div id="photo-carousel" class="col m6 s12">
         {{#each pictureIds}}
             <a class="listing-photo" data-lightbox="photos" href="{{picture this}}">
-                <img src="{{picture this}}" height="500" alt="{{picture.name}}">
+                <img src="{{picture this}}" height="350" alt="{{picture.name}}">
             </a>
         {{/each}}
     </div>

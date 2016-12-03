@@ -110,7 +110,8 @@ Template.sell.events({
             description = target.description.value,
             city = target.city.value,
             state = target.state.value,
-            phone = target.phone.value;
+            phone = target.phone.value,
+            email = target.email.value;
 
         if (category === '') {
             Materialize.toast('Please select a category', 4000, 'toast-error');
@@ -130,6 +131,7 @@ Template.sell.events({
             city: city,
             state: state,
             phone: phone,
+            email: email,
             pictureIds: pictureIds
         };
 

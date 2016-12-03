@@ -44,20 +44,29 @@
                             <label for="post-email">Email (optional)</label>
                         </div>
                         <div class="col s12">
-                            <label>{{picLimitLabel}}</label><br>
-                            <span class="btn btn-file waves-effect waves-light {{#if picLimitReached}}disabled{{/if}}">
-                        Add Photos <input id="post-pictures" type="file" accept="image/jpg, image/jpeg, image/png" multiple>
-                    </span>
+                            <div class="section">
+                                <label>{{picLimitLabel}}</label><br>
+                                <span class="btn btn-file waves-effect waves-light z-depth-0 {{#if picLimitReached}}disabled{{/if}}">
+                                    Add Photos
+                                    <input id="post-pictures" type="file" accept="image/jpg, image/jpeg, image/png" multiple>
+                                </span>
+
+                                <div class="picture-preview-row">
+                                    {{#each pictures}}
+                                        {{> pictureFrame}}
+                                    {{/each}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="picture-preview-row col s12">
-                            {{#each pictures}}
-                                {{> pictureFrame}}
-                            {{/each}}
-                        </div>
+
+
                         <div class="col s12">
-                            <button class="btn-large waves-effect waves-light red darken-3 right" type="submit">List
-                                It
-                            </button>
+                            <div class="divider"></div>
+                            <div class="section">
+                                <button class="btn-flat btn-large waves-effect waves-light right" type="submit">List
+                                    It
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
