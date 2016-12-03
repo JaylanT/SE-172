@@ -4,7 +4,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '/imports/ui/nav.js';
 import '/imports/ui/sell.js';
-import '/imports/ui/browse.js';
+import '/imports/ui/home.js';
 import '/imports/ui/listing.js';
 import '/imports/ui/signup.js';
 import '/imports/ui/login.js';

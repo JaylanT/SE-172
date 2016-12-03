@@ -20,7 +20,17 @@ Template.listing.onCreated(function () {
 });
 
 Template.photoCarousel.onRendered(function () {
-    $('.carousel').carousel();
+    $('#photo-carousel').owlCarousel({
+        navigation: true, // Show next and prev buttons
+        slideSpeed: 300,
+        rewindSpeed: 300,
+        paginationSpeed: 400,
+        singleItem: true,
+        navigationText: [
+            '<i class="material-icons">chevron_left</i>',
+            '<i class="material-icons">chevron_right</i>'
+        ]
+    });
 });
 
 Template.photoCarousel.helpers({

@@ -2,19 +2,23 @@
     <div class="container" id="wrap">
         {{#if ready}}
             {{#with listing}}
-                {{#if isOwner owner}}
-                    <button id="remove-listing" class="btn waves-effect waves-light red darken-3">Delete</button>
-                {{/if}}
-                <div class="row card-panel animated fadeIn">
-                    {{#if pictureIds}}
-                        {{> photoCarousel}}
-                    {{/if}}
-                    <div class="col m6 s12 offset-m1">
-                        <h5>{{title}}</h5>
-                        <p>{{category}}</p>
-                        <p>${{price}}</p>
-                        <p>Description</p>
-                        <p>{{description}}</p>
+                <div class=" card-panel animated fadeIn">
+                    <div class="row">
+                        {{#if pictureIds}}
+                            {{> photoCarousel}}
+                        {{/if}}
+                        <div class="col m6 s12">
+                            {{#if isOwner owner}}
+                                <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
+                                    <i class="material-icons">clear</i>
+                                </button>
+                            {{/if}}
+                            <h5>{{title}}</h5>
+                            <p>{{category}}</p>
+                            <p>${{price}}</p>
+                            <p>Description</p>
+                            <p>{{description}}</p>
+                        </div>
                     </div>
                 </div>
             {{/with}}
@@ -27,9 +31,11 @@
 </template>
 
 <template name="photoCarousel">
-    <div class="col m5 s12 carousel" data-indicators="true">
+    <div id="photo-carousel" class="col m6 s12">
         {{#each pictureIds}}
-            <a class="carousel-item"><img src="{{picture this}}" alt="{{picture.name}}"></a>
+            <a class="listing-photo" data-lightbox="photos" href="{{picture this}}">
+                <img src="{{picture this}}" height="500" alt="{{picture.name}}">
+            </a>
         {{/each}}
     </div>
 </template>

@@ -4,7 +4,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
 
-import './browse.html';
+import './home.html';
 
 Template.listings.onCreated(function () {
     this.ready = new ReactiveVar();
@@ -18,6 +18,9 @@ Template.listings.onCreated(function () {
 Template.listings.helpers({
     ready() {
         return Template.instance().ready.get();
+    },
+    hasListings() {
+        return Listings.findOne();
     },
     listings() {
         return Listings.find({}, { sort: { createdAt: -1 }, limit: 20 });

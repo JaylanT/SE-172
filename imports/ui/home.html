@@ -1,11 +1,15 @@
 <template name="listings">
     <div class="container" id="wrap">
         {{#if ready}}
-            <div class="row">
-                {{#each listings}}
-                    {{> listingCard}}
-                {{/each}}
-            </div>
+            {{#if hasListings}}
+                <div class="row">
+                    {{#each listings}}
+                        {{> listingCard}}
+                    {{/each}}
+                </div>
+            {{else}}
+                <p class="center">There are no listings.</p>
+            {{/if}}
         {{else}}
             {{> spinner}}
         {{/if}}

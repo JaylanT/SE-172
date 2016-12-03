@@ -145,6 +145,7 @@ Template.sell.events({
 
                 upload.on('end', (error, fileObj) => {
                     if (error) {
+                        template.ready.set(false);
                         Materialize.toast('Error during upload: ' + error, 4000, 'toast-error');
                     } else {
                         pictureIds.push(fileObj._id);

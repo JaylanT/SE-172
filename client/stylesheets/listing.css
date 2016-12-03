@@ -1,0 +1,16 @@
+.owl-theme .owl-controls .owl-buttons div {
+    color: inherit;
+    background: inherit;
+}
+
+.owl-theme .owl-controls .owl-buttons div .material-icons {
+    font-size: 30px !important;
+}
+
+.owl-item {
+    text-align: center;
+}
+
+#remove-listing > i {
+    font-size: 1.6rem;
+}
