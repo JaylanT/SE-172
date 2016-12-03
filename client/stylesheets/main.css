@@ -24,13 +24,6 @@ body {
     /*margin-left: 5px;*/
 }
 
-/*@media only screen and (max-width: 992px) {*/
-/*.picture-preview-row {*/
-/*overflow: auto;*/
-/*-webkit-overflow-scrolling: touch*/
-/*}*/
-/*}*/
-
 .pic-preview {
     max-width: 100px;
     max-height: 100px;
@@ -104,14 +97,6 @@ body {
     display: block;
 }
 
-#login-modal {
-    max-width: 400px;
-}
-
-#login-modal .btn {
-    width: 100%;
-}
-
 .toast-success {
-    background: #ee6e73;
+    background: #2e7d32;
 }

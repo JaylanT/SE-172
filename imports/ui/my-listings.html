@@ -1,23 +1,32 @@
 <template name="myListings">
-    <div id="wrap" class="container animated fadeIn">
-        <h4>My Listings</h4>
-        {{#if hasListings}}
-            <div class="collection">
-                {{#each listings}}
-                    <a class="collection-item avatar" href="/listing/{{_id}}">
-                        <img src="{{picture}}" alt="" class="circle">
-                        <span class="title">{{title}}</span>
-                        <p>{{price}}<br>
-                            {{date}}
-                        </p>
-                        <a href="#!" class="secondary-content remove-listing"><i class="material-icons red-text text-darken-3">delete</i></a>
-                    </a>
-                {{/each}}
-            </div>
+    <div id="wrap" class="container">
+        <h4 class="animated fadeIn">My Listings</h4>
+        {{#if ready}}
+            {{#if hasListings}}
+                <div class="collection animated fadeIn">
+                    {{#each listings}}
+                        {{> listingItem}}
+                    {{/each}}
+                </div>
+            {{else}}
+                <p>You have no listings!</p>
+            {{/if}}
         {{else}}
-            <p>You have no listings!</p>
+            {{> spinner}}
         {{/if}}
     </div>
 
     {{> removeListingModal}}
+</template>
+
+<template name="listingItem">
+    <a class="collection-item avatar" href="/listing/{{_id}}">
+        <img src="{{picture}}" alt="" class="circle">
+        <span class="title">{{title}}</span>
+        <p>{{price}}<br>
+            {{date}}
+        </p>
+        <a href="#!" class="secondary-content remove-listing"><i
+                class="material-icons red-text text-darken-3">delete</i></a>
+    </a>
 </template>

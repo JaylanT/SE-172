@@ -2,7 +2,10 @@
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <h4>Login</h4>
-            <form id="login-form">
+            {{#if loading}}
+                {{> spinner}}
+            {{/if}}
+            <form class="{{#if loading}}hide{{/if}}" id="login-form">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="email" name="email" type="email" class="validate" required>
@@ -16,7 +19,7 @@
                 <button class="btn waves-effect waves-light red darken-3" type="submit">Login</button>
             </form>
         </div>
-        <div class="modal-footer center">
+        <div class="{{#if loading}}hide{{/if}} modal-footer center">
             <a id="signup-link" href="#!" class="modal-action modal-close">Need an account? Register</a>
         </div>
     </div>

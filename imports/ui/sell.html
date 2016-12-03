@@ -1,61 +1,69 @@
 <template name="sell">
-    <div class="container animated fadeIn" id="wrap">
-        <form>
-            <div class="card-panel">
-                <h4>Sell</h4>
+    <div class="container" id="wrap">
+        {{#if ready}}
+            <form>
+                <div class="card-panel animated fadeIn">
+                    <h4>Sell</h4>
 
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <input name="title" id="post-title" type="text" class="validate" required>
-                        <label for="post-title">Post title</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <select id="post-category" name="category">
-                            {{> categories}}
-                        </select>
-                        <label for="post-category">Category</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input name="price" id="post-price" type="number" min="0" step="0.01" class="validate" required>
-                        <label for="post-price">Price</label>
-                    </div>
-                    <div class="input-field col s12">
-                    <textarea name="description" id="post-description-textarea" class="materialize-textarea" maxlength="2000"
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <input name="title" id="post-title" type="text" class="validate" required>
+                            <label for="post-title">Post title</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select id="post-category" name="category">
+                                {{> categories}}
+                            </select>
+                            <label for="post-category">Category</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input name="price" id="post-price" type="number" min="0" step="0.01" class="validate"
+                                   required>
+                            <label for="post-price">Price</label>
+                        </div>
+                        <div class="input-field col s12">
+                    <textarea name="description" id="post-description-textarea" class="materialize-textarea"
+                              maxlength="2000"
                               required></textarea>
-                        <label for="post-description-textarea">Description</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input name="city" id="post-city" type="text" class="validate" value="{{city}}" required>
-                        <label class="active" for="post-city">City</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input name="state" id="post-state" type="text" class="validate" value="{{state}}" required>
-                        <label class="active" for="post-state">State</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input name="phone" id="post-phone" type="tel" class="validate">
-                        <label for="post-phone">Phone number (optional)</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <input name="email" id="post-email" type="email" class="validate">
-                        <label for="post-email">Email (optional)</label>
-                    </div>
-                    <div class="col s12">
-                        <label>{{picLimitLabel}}</label><br>
-                        <span class="btn btn-file waves-effect waves-light {{#if picLimitReached}}disabled{{/if}}">
+                            <label for="post-description-textarea">Description</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <input name="city" id="post-city" type="text" class="validate" value="{{city}}" required>
+                            <label class="active" for="post-city">City</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <input name="state" id="post-state" type="text" class="validate" value="{{state}}" required>
+                            <label class="active" for="post-state">State</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <input name="phone" id="post-phone" type="tel" class="validate">
+                            <label for="post-phone">Phone number (optional)</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <input name="email" id="post-email" type="email" class="validate">
+                            <label for="post-email">Email (optional)</label>
+                        </div>
+                        <div class="col s12">
+                            <label>{{picLimitLabel}}</label><br>
+                            <span class="btn btn-file waves-effect waves-light {{#if picLimitReached}}disabled{{/if}}">
                         Add Photos <input id="post-pictures" type="file" accept="image/*" multiple>
                     </span>
-                    </div>
-                    <div class="picture-preview-row col s12">
-                        {{#each pictures}}
-                            {{> pictureFrame}}
-                        {{/each}}
-                    </div>
-                    <div class="col s12">
-                        <button class="btn-large waves-effect waves-light red darken-3 right" type="submit">List It</button>
+                        </div>
+                        <div class="picture-preview-row col s12">
+                            {{#each pictures}}
+                                {{> pictureFrame}}
+                            {{/each}}
+                        </div>
+                        <div class="col s12">
+                            <button class="btn-large waves-effect waves-light red darken-3 right" type="submit">List
+                                It
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        {{else}}
+            {{> spinner}}
+        {{/if}}
     </div>
 </template>

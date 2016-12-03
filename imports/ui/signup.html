@@ -2,7 +2,10 @@
     <div id="signup-modal" class="modal">
         <div class="modal-content">
             <h4>Register</h4>
-            <form id="signup-form">
+            {{#if loading}}
+                {{> spinner}}
+            {{/if}}
+            <form class="{{#if loading}}hide{{/if}}" id="signup-form">
                 <div class="row">
                     <div class="input-field col s12 m6">
                         <input id="first-name" name="firstName" type="text" class="validate" autofocus required>
@@ -28,7 +31,7 @@
                 <button class="btn waves-effect waves-light red darken-3" type="submit">Sign Up</button>
             </form>
         </div>
-        <div class="modal-footer center">
+        <div class="{{#if loading}}hide{{/if}} modal-footer center">
             <a id="login-link" href="#!" class="modal-action modal-close">Already a member? Login</a>
         </div>
     </div>

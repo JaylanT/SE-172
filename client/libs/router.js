@@ -9,12 +9,13 @@ import '/imports/ui/listing.js';
 import '/imports/ui/signup.js';
 import '/imports/ui/login.js';
 import '/imports/ui/my-listings.js';
+import '/imports/ui/spinner.html';
 
 const loggedIn = FlowRouter.group({
     // Redirects to login if not logged in
     triggersEnter: [function () {
         if (!(Meteor.loggingIn() || Meteor.userId())) {
-            const route = FlowRouter.current();
+            // const route = FlowRouter.current();
             // if (route.route.name !== 'login') {
             //     Session.set('redirectAfterLogin', route.path);
             // }

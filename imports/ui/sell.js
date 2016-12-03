@@ -28,6 +28,8 @@ Template.sell.onCreated(function() {
             });
     });
 
+    this.ready = new ReactiveVar(true);
+
     TempPhotos = new Mongo.Collection(null);
 });
 
@@ -39,6 +41,9 @@ Template.sell.onRendered(function () {
 });
 
 Template.sell.helpers({
+    ready() {
+        return Template.instance().ready.get();
+    },
     city() {
         if (Template.instance().address.get()) {
             return Template.instance().address.get()[0].long_name;
@@ -95,7 +100,7 @@ Template.sell.events({
     'click .remove-picture'() {
         TempPhotos.remove(this);
     },
-    'submit form'(event) {
+    'submit form'(event, template) {
         event.preventDefault();
 
         const target = event.target;
@@ -111,6 +116,8 @@ Template.sell.events({
             Materialize.toast('Please select a category', 4000, 'toast-error');
             return;
         }
+
+        template.ready.set(false);
 
         const pictureIds = [],
             pictures = TempPhotos.find().fetch();

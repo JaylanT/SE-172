@@ -1,27 +1,35 @@
 <template name="listing">
-    <div class="container animated fadeIn" id="wrap">
-        {{#with listing}}
-            {{#if isOwner owner}}
-                <button id="remove-listing" class="btn waves-effect waves-light red darken-3">Delete</button>
-            {{/if}}
-            <div class="row card-panel">
-                {{#if pictureIds}}
-                    <div class="col m5 s12 carousel" data-indicators="true">
-                        {{#each pictureIds}}
-                            <a class="carousel-item"><img src="{{picture this}}" alt="{{picture.name}}"></a>
-                        {{/each}}
-                    </div>
+    <div class="container" id="wrap">
+        {{#if ready}}
+            {{#with listing}}
+                {{#if isOwner owner}}
+                    <button id="remove-listing" class="btn waves-effect waves-light red darken-3">Delete</button>
                 {{/if}}
-                <div class="col m6 s12 offset-m1">
-                    <h5>{{title}}</h5>
-                    <p>{{category}}</p>
-                    <p>${{price}}</p>
-                    <p>Description</p>
-                    <p>{{description}}</p>
+                <div class="row card-panel animated fadeIn">
+                    {{#if pictureIds}}
+                        {{> photoCarousel}}
+                    {{/if}}
+                    <div class="col m6 s12 offset-m1">
+                        <h5>{{title}}</h5>
+                        <p>{{category}}</p>
+                        <p>${{price}}</p>
+                        <p>Description</p>
+                        <p>{{description}}</p>
+                    </div>
                 </div>
-            </div>
-        {{/with}}
+            {{/with}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
     </div>
 
     {{> removeListingModal}}
+</template>
+
+<template name="photoCarousel">
+    <div class="col m5 s12 carousel" data-indicators="true">
+        {{#each pictureIds}}
+            <a class="carousel-item"><img src="{{picture this}}" alt="{{picture.name}}"></a>
+        {{/each}}
+    </div>
 </template>

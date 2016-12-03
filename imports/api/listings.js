@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check, Match } from 'meteor/check';
 
+import { Pictures } from '../api/pictures.js';
+
 export const Listings = new Mongo.Collection('listings');
 
 if (Meteor.isServer) {
@@ -9,10 +11,25 @@ if (Meteor.isServer) {
         return Listings.find();
     });
     Meteor.publish('singleListing', id => {
+        check(id, String);
+
+        const listing = Listings.findOne(id),
+            pictureIds = listing.pictureIds;
+
+        if (pictureIds.length > 0) {
+            return [
+                Listings.find(id),
+                Pictures.find({ _id: { $in: pictureIds } }).cursor
+            ];
+        }
+
         return Listings.find(id);
     });
     Meteor.publish('myListings', function () {
-        return Listings.find({ owner: this.userId });
+        return [
+            Listings.find({ owner: this.userId }),
+            Pictures.find().cursor
+        ]
     });
 }
 
