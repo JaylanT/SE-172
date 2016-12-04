@@ -21,12 +21,13 @@
 
 <template name="listingItem">
     <a class="collection-item avatar" href="/listing/{{_id}}">
-        <img src="{{picture}}" alt="" class="circle">
+        <img src="{{picture}}" class="circle">
         <span class="title">{{title}}</span>
         <p>{{price}}<br>
             {{date}}
         </p>
-        <a href="#!" class="secondary-content remove-listing"><i
-                class="material-icons black-text">clear</i></a>
+        <a href="#!" class="secondary-content remove-listing">
+            <i class="material-icons black-text">clear</i>
+        </a>
     </a>
 </template>

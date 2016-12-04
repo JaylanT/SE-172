@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/materialize:materialize'
 
 import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
@@ -37,8 +39,8 @@ Template.myListings.events({
 
 Template.listingItem.helpers({
     picture() {
-        if (this.pictureIds[0]) {
-            return Pictures.findOne(this.pictureIds[0]).link();
+        if (this.photoIds[0]) {
+            return Pictures.findOne(this.photoIds[0]).link();
         } else {
             return '/photo.png';
         }

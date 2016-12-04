@@ -1,6 +1,8 @@
-import { Accounts } from 'meteor/accounts-base'
+import { Accounts } from 'meteor/accounts-base';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/materialize:materialize'
 
 import './signup.html';
 

@@ -14,12 +14,12 @@ if (Meteor.isServer) {
         check(id, String);
 
         const listing = Listings.findOne(id),
-            pictureIds = listing.pictureIds;
+            photoIds = listing.photoIds;
 
-        if (pictureIds.length > 0) {
+        if (photoIds.length > 0) {
             return [
                 Listings.find(id),
-                Pictures.find({ _id: { $in: pictureIds } }).cursor
+                Pictures.find({ _id: { $in: photoIds } }).cursor
             ];
         }
 
@@ -43,8 +43,8 @@ Meteor.methods({
             city: String,
             state: String,
             phone: Match.Optional(String),
-            email: Match.Optional(String),
-            pictureIds: Match.Where(ids => {
+            email: String,
+            photoIds: Match.Where(ids => {
                 check(ids, [String]);
                 return ids.length < 5;
             })

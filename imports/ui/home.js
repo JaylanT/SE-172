@@ -24,6 +24,6 @@ Template.listingCard.onCreated(function () {
 
 Template.listingCard.helpers({
     picture() {
-        return Pictures.findOne(this.pictureIds[0]);
+        return Pictures.findOne(this.photoIds[0]);
     }
 });

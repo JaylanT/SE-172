@@ -2,14 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
-import '/imports/ui/nav.js';
-import '/imports/ui/sell.js';
-import '/imports/ui/home.js';
-import '/imports/ui/listing.js';
-import '/imports/ui/signup.js';
-import '/imports/ui/login.js';
-import '/imports/ui/my-listings.js';
-import '/imports/ui/spinner.html';
+import '../../ui/spinner.js';
+import '../../ui/main-layout.js';
+import '../../ui/nav.js';
+import '../../ui/sell.js';
+import '../../ui/home.js';
+import '../../ui/listing.js';
+import '../../ui/signup.js';
+import '../../ui/login.js';
+import '../../ui/my-listings.js';
 
 const loggedIn = FlowRouter.group({
     // Redirects to login if not logged in

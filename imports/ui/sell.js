@@ -1,7 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Mongo } from 'meteor/mongo';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { HTTP } from 'meteor/http';
+import { Promise } from 'meteor/promise';
+import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/materialize:materialize'
 
 import { Pictures } from '../api/pictures.js';
 
@@ -30,7 +35,8 @@ Template.sell.onCreated(function() {
 
     this.ready = new ReactiveVar(true);
 
-    TempPhotos = new Mongo.Collection(null);
+    // client-side collection
+    this.TempPhotos = new Mongo.Collection(null);
 });
 
 Template.sell.onRendered(function () {
@@ -55,28 +61,28 @@ Template.sell.helpers({
         }
     },
     pictures() {
-        return TempPhotos.find();
+        return Template.instance().TempPhotos.find();
     },
     picLimitLabel() {
-        if (!TempPhotos.findOne()) return 'Add up to 4 photos';
+        if (!Template.instance().TempPhotos.findOne()) return 'Add up to 4 photos';
 
-        return 'Add up to ' + (4 - TempPhotos.find().count()) + ' more';
+        return 'Add up to ' + (4 - Template.instance().TempPhotos.find().count()) + ' more';
     },
     picLimitReached() {
-        return TempPhotos.find().count() === 4;
+        return Template.instance().TempPhotos.find().count() === 4;
     },
 });
 
 Template.sell.events({
-    'change #post-pictures'(e) {
-        const files = e.target.files;
+    'change #post-pictures'(event, template) {
+        const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
             if (files[i].size > 2097152) {
                 Materialize.toast('File size cannot exceed 2MB.', 4000, 'toast-error');
                 return;
             }
         }
-        if (files.length + TempPhotos.find().count() > 4) {
+        if (files.length + template.TempPhotos.find().count() > 4) {
             Materialize.toast('Picture limit exceeded.', 4000, 'toast-error');
             return;
         }
@@ -85,7 +91,7 @@ Template.sell.events({
             const reader = new FileReader();
 
             reader.onload = ev => {
-                TempPhotos.insert({
+                template.TempPhotos.insert({
                     picture: ev.target.result,
                     name: files[i].name
                 });
@@ -97,8 +103,8 @@ Template.sell.events({
         let picInput = $('#post-pictures');
         picInput.replaceWith(picInput = picInput.clone(true));
     },
-    'click .remove-picture'() {
-        TempPhotos.remove(this);
+    'click .remove-picture'(_, template) {
+        template.TempPhotos.remove(this);
     },
     'submit form'(event, template) {
         event.preventDefault();
@@ -120,9 +126,6 @@ Template.sell.events({
 
         template.ready.set(false);
 
-        const pictureIds = [],
-            pictures = TempPhotos.find().fetch();
-
         const listing = {
             title: title,
             category: category,
@@ -131,36 +134,51 @@ Template.sell.events({
             city: city,
             state: state,
             phone: phone,
-            email: email,
-            pictureIds: pictureIds
+            email: email
         };
 
-        if (pictures.length === 0) {
+        const photos = template.TempPhotos.find().fetch();
+        if (photos.length === 0) {
+            listing.photoIds = [];
             insertListing(listing);
         } else {
-            pictures.forEach(blob => {
-                const upload = Pictures.insert({
-                    file: blob.picture,
-                    isBase64: true,
-                    fileName: blob.name
-                });
-
-                upload.on('end', (error, fileObj) => {
-                    if (error) {
-                        template.ready.set(false);
-                        Materialize.toast('Error during upload: ' + error, 4000, 'toast-error');
-                    } else {
-                        pictureIds.push(fileObj._id);
-
-                        if (pictureIds.length === pictures.length) {
-                            insertListing(listing);
-                        }
-                    }
-                });
+            const promises = [];
+            photos.forEach(blob => {
+                promises.push(insertPhoto(blob));
             });
+
+            Promise.all(promises)
+                .then(photoIds => {
+                    listing.photoIds = photoIds;
+                    insertListing(listing);
+                })
+                .catch(err => {
+                    template.ready.set(false);
+                    Materialize.toast('Error during upload: ' + err, 4000, 'toast-error');
+                });
         }
     }
 });
+
+function insertPhoto(blob) {
+    return new Promise((resolve, reject) => {
+        Pictures.insert({
+            file: blob.picture,
+            isBase64: true,
+            fileName: blob.name
+        })
+            .on('error', (err, fileObj) => {
+                reject(err, fileObj);
+            })
+            .on('end', (err, fileObj) => {
+                if (err) {
+                    reject(err, fileObj);
+                } else {
+                    resolve(fileObj._id);
+                }
+            });
+    })
+}
 
 function insertListing(listing) {
     Meteor.call('listings.insert', listing, (err, id) => {

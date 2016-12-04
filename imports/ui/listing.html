@@ -2,32 +2,32 @@
     <div class="container" id="wrap">
         {{#if Template.subscriptionsReady}}
             {{#with listing}}
-                <div class=" card-panel animated fadeIn">
+                <div class="card-panel animated fadeIn">
                     <div class="row">
-                        {{#if pictureIds}}
+                        {{#if photoIds}}
                             {{> photoCarousel}}
                         {{/if}}
-                        <div class="col {{#if pictureIds}}m6{{else}}m12{{/if}} s12">
+                        <div class="col {{#if photoIds}}m6{{else}}m12{{/if}} s12">
                             {{#if isOwner owner}}
                                 <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
                                     <i class="material-icons">clear</i>
                                 </button>
                             {{/if}}
+
                             <h5>{{title}}</h5>
                             <p>{{category}}</p>
-                            <p>${{price}}</p>
+                            <p><strong>${{price}}</strong></p>
+                            <p>{{city}}, {{state}}</p>
                             <div class="section">
                                 <label>Description</label>
                                 <p>{{description}}</p>
                             </div>
 
+                            <div class="divider"></div>
                             <div class="section">
-                                <div class="divider"></div>
+                                <p><i class="material-icons listing-contact-icons">mail</i> {{email}}</p>
                                 {{#if phone}}
-                                    <p>Phone: {{phone}}</p>
-                                {{/if}}
-                                {{#if email}}
-                                    <p>Email: {{email}}</p>
+                                    <p><i class="material-icons listing-contact-icons">phone</i> {{phone}}</p>
                                 {{/if}}
                             </div>
                         </div>
@@ -44,7 +44,7 @@
 
 <template name="photoCarousel">
     <div id="photo-carousel" class="col m6 s12">
-        {{#each pictureIds}}
+        {{#each photoIds}}
             <a data-lightbox="photos" href="{{picture this}}">
                 <img class="listing-photo" src="{{picture this}}" alt="{{picture.name}}">
             </a>

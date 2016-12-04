@@ -17,10 +17,10 @@
 </template>
 
 <template name="listingCard">
-    <div class="col s12 m6 l3 animated fadeIn">
+    <div class="col s12 m6 l3">
         <a href="/listing/{{_id}}">
-            <div class="card small hoverable">
-                {{#if pictureIds}}
+            <div class="card small hoverable animated fadeIn">
+                {{#if photoIds}}
                     <div class="card-image">
                         <img src="{{picture.link}}" alt="{{picture.name}}">
                     </div>
