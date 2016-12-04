@@ -1,6 +1,6 @@
 <template name="listing">
     <div class="container" id="wrap">
-        {{#if ready}}
+        {{#if Template.subscriptionsReady}}
             {{#with listing}}
                 <div class=" card-panel animated fadeIn">
                     <div class="row">
@@ -14,10 +14,10 @@
                                 </button>
                             {{/if}}
                             <h5>{{title}}</h5>
+                            <p>{{category}}</p>
+                            <p>${{price}}</p>
                             <div class="section">
-                                <p>{{category}}</p>
-                                <p>${{price}}</p>
-                                <p>Description:</p>
+                                <label>Description</label>
                                 <p>{{description}}</p>
                             </div>
 
@@ -45,8 +45,8 @@
 <template name="photoCarousel">
     <div id="photo-carousel" class="col m6 s12">
         {{#each pictureIds}}
-            <a class="listing-photo" data-lightbox="photos" href="{{picture this}}">
-                <img src="{{picture this}}" height="350" alt="{{picture.name}}">
+            <a data-lightbox="photos" href="{{picture this}}">
+                <img class="listing-photo" src="{{picture this}}" alt="{{picture.name}}">
             </a>
         {{/each}}
     </div>

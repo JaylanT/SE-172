@@ -1,7 +1,7 @@
 <template name="myListings">
     <div id="wrap" class="container">
         <h4 class="animated fadeIn">My Listings</h4>
-        {{#if ready}}
+        {{#if Template.subscriptionsReady}}
             {{#if hasListings}}
                 <div class="collection animated fadeIn">
                     {{#each listings}}

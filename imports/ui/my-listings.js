@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { ReactiveVar } from 'meteor/reactive-var';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Listings } from '../api/listings.js';
@@ -9,19 +8,11 @@ import './my-listings.html';
 import './remove-listing-modal.html';
 
 Template.myListings.onCreated(function () {
-    this.ready = new ReactiveVar();
-
-    this.autorun(() => {
-        const handle = this.subscribe('myListings');
-        this.ready.set(handle.ready());
-    });
+    this.subscribe('myListings');
 
 });
 
 Template.myListings.helpers({
-    ready() {
-        return Template.instance().ready.get();
-    },
     hasListings() {
         return Listings.findOne();
     },
@@ -46,7 +37,6 @@ Template.myListings.events({
 
 Template.listingItem.helpers({
     picture() {
-        console.log(this);
         if (this.pictureIds[0]) {
             return Pictures.findOne(this.pictureIds[0]).link();
         } else {

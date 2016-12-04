@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
@@ -7,18 +6,10 @@ import { Pictures } from '../api/pictures.js';
 import './home.html';
 
 Template.listings.onCreated(function () {
-    this.ready = new ReactiveVar();
-
-    this.autorun(() => {
-        const handle = this.subscribe('listings');
-        this.ready.set(handle.ready());
-    });
+    this.subscribe('listings');
 });
 
 Template.listings.helpers({
-    ready() {
-        return Template.instance().ready.get();
-    },
     hasListings() {
         return Listings.findOne();
     },

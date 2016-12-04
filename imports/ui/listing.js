@@ -10,13 +10,7 @@ import './remove-listing-modal.html';
 
 Template.listing.onCreated(function () {
     const listingId = FlowRouter.getParam('id');
-
-    this.ready = new ReactiveVar();
-
-    this.autorun(() => {
-        const handle = this.subscribe('singleListing', listingId);
-        this.ready.set(handle.ready());
-    });
+    this.subscribe('singleListing', listingId);
 });
 
 Template.photoCarousel.onRendered(function () {
@@ -43,9 +37,6 @@ Template.photoCarousel.helpers({
 });
 
 Template.listing.helpers({
-    ready() {
-        return Template.instance().ready.get();
-    },
     listing() {
         const listingId = FlowRouter.getParam('id');
         return Listings.findOne(listingId);
