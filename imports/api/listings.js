@@ -88,5 +88,20 @@ Meteor.methods({
         }
 
         Listings.remove(listingId);
+    },
+    'listings.update'(listingId, listingData) {
+        check(listingId, String);
+        check(listingData, {
+            title: String,
+            category: String,
+            price: Number,
+            description: String,
+            city: String,
+            state: String,
+            phone: Match.Optional(String),
+            email: String
+        });
+
+        return Listings.update(listingId, { $set: listingData });
     }
 });

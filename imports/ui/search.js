@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session';
 
 import { Listings } from '../api/listings.js';
 
@@ -11,7 +10,6 @@ Template.search.onCreated(function () {
 
         if (query) {
             this.subscribe('search', query);
-            // Session.set('searchQuery', query);
         }
     });
 });

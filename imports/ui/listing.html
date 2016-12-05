@@ -9,8 +9,11 @@
                         {{/if}}
                         <div class="col {{#if photoIds}}m6{{else}}m12{{/if}} s12">
                             {{#if isOwner owner}}
-                                <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
+                                <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-3 right">
                                     <i class="material-icons">clear</i>
+                                </button>
+                                <button id="edit-listing" class="btn-flat waves-effect waves-light waves-green darken-3 right">
+                                    <i class="material-icons">edit</i>
                                 </button>
                             {{else}}
                                 <button id="favorite-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
@@ -45,6 +48,7 @@
     </div>
 
     {{> removeListingModal}}
+    {{> editListing listing}}
 </template>
 
 <template name="photoCarousel">

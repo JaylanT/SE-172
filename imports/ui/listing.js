@@ -9,6 +9,7 @@ import { Favorites } from '../api/favorites.js';
 
 import './listing.html';
 import './remove-listing-modal.html';
+import './edit-listing.js';
 
 Template.listing.onCreated(function () {
     const listingId = FlowRouter.getParam('id');
@@ -44,6 +45,9 @@ Template.listing.events({
         Meteor.call('listings.remove', listingId, err => {
             FlowRouter.go('/mylistings');
         });
+    },
+    'click #edit-listing'() {
+        $('#edit-listing-modal').openModal();
     },
     'click #favorite-listing'() {
         const listingId = FlowRouter.getParam('id');

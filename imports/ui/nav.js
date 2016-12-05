@@ -23,8 +23,9 @@ Template.nav.events({
         });
     },
     'blur #search'() {
-        $('#search-bar').fadeOut(200);
-        $('#navbar-links').fadeIn(200)
+        $('#search-bar').fadeOut(200, () => {
+            $('#navbar-links').fadeIn(200);
+        });
     },
     'submit #search-bar'(event) {
         event.preventDefault();

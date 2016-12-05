@@ -26,6 +26,7 @@ Template.sell.onRendered(function () {
         insertElement: (node, next) => $(node).hide().insertBefore(next).fadeIn(),
         removeElement: (node) => $(node).fadeOut(() => $(this).remove())
     };
+    $('select').material_select();
 });
 
 Template.sell.helpers({
@@ -82,6 +83,7 @@ Template.sell.events({
         event.preventDefault();
 
         const target = event.target;
+
         const title = target.title.value,
             category = target.category.value,
             price = Number(target.price.value),
@@ -93,6 +95,11 @@ Template.sell.events({
 
         if (category === '') {
             Materialize.toast('Please select a category', 4000, 'toast-error');
+            return;
+        }
+
+        if (state === '') {
+            Materialize.toast('Please select a state', 4000, 'toast-error');
             return;
         }
 
