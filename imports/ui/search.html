@@ -1,0 +1,17 @@
+<template name="search">
+    <div class="container" id="wrap">
+        {{#if Template.subscriptionsReady}}
+            {{#if foundListings}}
+                <div class="row">
+                    {{#each listings}}
+                        {{> listingCard}}
+                    {{/each}}
+                </div>
+            {{else}}
+                <p class="center">No listings found.</p>
+            {{/if}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
+    </div>
+</template>

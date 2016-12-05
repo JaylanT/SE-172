@@ -10,6 +10,7 @@ if (Meteor.isServer) {
     Meteor.publish('listings', () => {
         return Listings.find();
     });
+
     Meteor.publish('singleListing', id => {
         check(id, String);
 
@@ -25,11 +26,30 @@ if (Meteor.isServer) {
 
         return Listings.find(id);
     });
+
     Meteor.publish('myListings', function () {
         return [
             Listings.find({ owner: this.userId }),
             Pictures.find().cursor
         ]
+    });
+
+    Meteor.publish('search', query => {
+        return [
+            Listings.find({
+                $text: { $search: query }
+            }),
+            Pictures.find().cursor
+        ]
+    });
+
+    Listings._ensureIndex({
+        'title': 'text',
+        'category': 'text',
+        'description': 'text',
+        'city': 'text',
+        'state': 'text',
+        'owner': 1
     });
 }
 

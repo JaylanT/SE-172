@@ -11,6 +11,7 @@ if (Meteor.isServer) {
     Meteor.publish('favorites', function () {
         return Favorites.find({ owner: this.userId });
     });
+
     Meteor.publish('favoriteListings', function () {
         const favorites = Favorites.findOne({ owner: this.userId });
 
@@ -23,7 +24,11 @@ if (Meteor.isServer) {
         } else {
             return [];
         }
-    })
+    });
+
+    Favorites._ensureIndex({
+        'owner': 1
+    });
 }
 
 Meteor.methods({

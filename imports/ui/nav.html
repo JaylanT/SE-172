@@ -4,7 +4,8 @@
             <div class="nav-wrapper container">
                 <a href="/" class="brand-logo">MARKT</a>
                 <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
+                <ul id="navbar-links" class="right hide-on-med-and-down">
+                    <li><a id="search-btn"><i class="material-icons">search</i></a></li>
                     {{#if currentUser}}
                         <li><a href="/favorites">Favorites</a></li>
                         <li><a href="/mylistings">My Listings</a></li>
@@ -19,6 +20,15 @@
                         </a>
                     </li>
                 </ul>
+
+                <form id="search-bar">
+                    <div class="input-field">
+                        <input id="search" name="search" type="search">
+                        <label for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+
                 <ul class="side-nav" id="mobile-nav">
                     {{#if currentUser}}
                         <li><a href="/favorites">Favorites</a></li>

@@ -11,6 +11,14 @@ body {
     margin-bottom: 60px;
 }
 
+#search-bar {
+    display: none;
+}
+
+#search-bar .input-field {
+    margin-left: 150px;
+}
+
 .brand-logo {
     font-family: BebasNeue, sans-serif;
     font-size: 2.3rem !important;
