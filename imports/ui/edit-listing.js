@@ -14,6 +14,7 @@ Template.editListing.onRendered(function () {
         $('select[id$="post-state"] option[value="' + state + '"]').attr('selected', true);
     }
 
+    $('#post-description-textarea').trigger('autoresize');
     $('select').material_select();
 });
 

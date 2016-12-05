@@ -22,7 +22,7 @@
                     </div>
                     <div class="input-field col s12">
                     <textarea name="description" id="post-description-textarea" class="materialize-textarea"
-                              maxlength="2000" value="{{description}}" required></textarea>
+                              maxlength="2000" required>{{description}}</textarea>
                         <label class="active" for="post-description-textarea">Description</label>
                     </div>
                     <div class="input-field col s12 m6">
@@ -36,7 +36,7 @@
                         <label for="post-state">State</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input name="email" id="post-email" type="email" class="validate" value="{{currentUser.emails.[0].address}}" required>
+                        <input name="email" id="post-email" type="email" class="validate" value="{{email}}" required>
                         <label class="active" for="post-email">Email</label>
                     </div>
                     <div class="input-field col s12 m6">
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-footer">
                 <a class="modal-action modal-close waves-effect waves-red darken-3 btn-flat">Cancel</a>
-                <button id="save-edits" class="waves-effect waves-green darken-3 btn-flat" type="submit">Save</button>
+                <button class="waves-effect waves-green darken-3 btn-flat" type="submit">Save</button>
             </div>
         </form>
     </div>
