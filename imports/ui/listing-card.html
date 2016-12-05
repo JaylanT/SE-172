@@ -1,0 +1,19 @@
+<template name="listingCard">
+    <div class="col s12 m6 l3">
+        <a href="/listing/{{_id}}">
+            <div class="card small hoverable animated fadeIn listing-card">
+                {{#if photoIds}}
+                    <div class="card-image">
+                        <img src="{{picture.link}}" alt="{{picture.name}}">
+                    </div>
+                {{/if}}
+                <div class="card-content">
+                    <p class="truncate card-title"><strong>{{title}}</strong></p>
+                    <p>${{price}}</p>
+                    <p>{{city}}, {{state}}</p>
+                    <small class="right">{{date}}</small>
+                </div>
+            </div>
+        </a>
+    </div>
+</template>

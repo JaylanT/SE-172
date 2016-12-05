@@ -4,6 +4,7 @@ import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
 
 import './home.html';
+import './listing-card.js';
 
 Template.listings.onCreated(function () {
     this.subscribe('listings');

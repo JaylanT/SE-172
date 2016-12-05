@@ -28,16 +28,18 @@
                             <label for="post-description-textarea">Description</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <input name="city" id="post-city" type="text" class="validate" value="{{city}}" required>
-                            <label class="active" for="post-city">City</label>
+                            <input name="city" id="post-city" type="text" class="validate" required>
+                            <label for="post-city">City</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <input name="state" id="post-state" type="text" class="validate" value="{{state}}" required>
-                            <label class="active" for="post-state">State</label>
+                            <select id="post-state" name="state">
+                                {{> states}}
+                            </select>
+                            <label for="post-state">State</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <input name="email" id="post-email" type="email" class="validate" required>
-                            <label for="post-email">Email</label>
+                            <input name="email" id="post-email" type="email" class="validate" value="{{currentUser.emails.[0].address}}" required>
+                            <label class="active" for="post-email">Email</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <input name="phone" id="post-phone" type="tel" class="validate">

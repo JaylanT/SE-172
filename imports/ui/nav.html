@@ -6,8 +6,9 @@
                 <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {{#if currentUser}}
-                        <li><a href="/sell">Sell</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
                         <li><a href="/mylistings">My Listings</a></li>
+                        <li><a href="/sell">Sell</a></li>
                     {{else}}
                         <li><a id="login" href="#">Login/Register</a></li>
                     {{/if}}
@@ -20,8 +21,9 @@
                 </ul>
                 <ul class="side-nav" id="mobile-nav">
                     {{#if currentUser}}
-                        <li><a href="/sell">Sell</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
                         <li><a href="/mylistings">My Listings</a></li>
+                        <li><a href="/sell">Sell</a></li>
                         <li><a class="red-text text-darken-3" href="/logout">Logout</a></li>
                     {{else}}
                         <li><a id="login" href="#">Login/Register</a></li>

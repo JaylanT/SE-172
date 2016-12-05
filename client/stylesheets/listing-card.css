@@ -1,3 +1,8 @@
-a .card-content {
+a .listing-card .card-content {
     color: rgba(0, 0, 0, 0.87);
+}
+
+.listing-card .card-content .card-title {
+    font-size: 17px;
+    line-height: 35px;
 }

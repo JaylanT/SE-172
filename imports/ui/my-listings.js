@@ -11,7 +11,7 @@ import './remove-listing-modal.html';
 
 Template.myListings.onCreated(function () {
     this.subscribe('myListings');
-
+    this.listingToRemove = '';
 });
 
 Template.myListings.helpers({
@@ -23,17 +23,13 @@ Template.myListings.helpers({
     },
 });
 
-let listingToRemove;
-
 Template.myListings.events({
-    'click .remove-listing'() {
-        listingToRemove = this._id;
+    'click .remove-listing'(_, template) {
+        template.listingToRemove = this._id;
         $('#confirm-remove-listing-modal').openModal();
     },
-    'click #remove-listing-confirm'() {
-        Meteor.call('listings.remove', listingToRemove, err => {
-            listingToRemove = "";
-        });
+    'click #remove-listing-confirm'(_, template) {
+        Meteor.call('listings.remove', template.listingToRemove);
     }
 });
 

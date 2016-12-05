@@ -5,6 +5,7 @@ import { $ } from 'meteor/jquery';
 
 import { Listings } from '../api/listings.js';
 import { Pictures } from '../api/pictures.js';
+import { Favorites } from '../api/favorites.js';
 
 import './listing.html';
 import './remove-listing-modal.html';
@@ -12,6 +13,42 @@ import './remove-listing-modal.html';
 Template.listing.onCreated(function () {
     const listingId = FlowRouter.getParam('id');
     this.subscribe('singleListing', listingId);
+    this.subscribe('favorites');
+});
+
+Template.listing.helpers({
+    listing() {
+        const listingId = FlowRouter.getParam('id');
+        return Listings.findOne(listingId);
+    },
+    isOwner(ownerId) {
+        return Meteor.userId() === ownerId;
+    },
+    date() {
+        const date = new Date(this.createdAt),
+            options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString("en-US", options);
+    },
+    favorited() {
+        const listingId = FlowRouter.getParam('id');
+        return Favorites.findOne({ listings: listingId });
+    }
+});
+
+Template.listing.events({
+    'click #remove-listing'() {
+        $('#confirm-remove-listing-modal').openModal();
+    },
+    'click #remove-listing-confirm'() {
+        const listingId = FlowRouter.getParam('id');
+        Meteor.call('listings.remove', listingId, err => {
+            FlowRouter.go('/mylistings');
+        });
+    },
+    'click #favorite-listing'() {
+        const listingId = FlowRouter.getParam('id');
+        Meteor.call('favorites.setFavorited', listingId);
+    }
 });
 
 Template.photoCarousel.onRendered(function () {
@@ -35,29 +72,4 @@ Template.photoCarousel.helpers({
         if (picture)
             return picture.link();
     },
-});
-
-Template.listing.helpers({
-    listing() {
-        const listingId = FlowRouter.getParam('id');
-        return Listings.findOne(listingId);
-    },
-    isOwner(ownerId) {
-        return Meteor.userId() === ownerId;
-    }
-});
-
-let listingToRemove;
-
-Template.listing.events({
-    'click #remove-listing'() {
-        listingToRemove = this._id;
-        $('#confirm-remove-listing-modal').openModal();
-    },
-    'click #remove-listing-confirm'() {
-        Meteor.call('listings.remove', listingToRemove, err => {
-            listingToRemove = "";
-            FlowRouter.go('/mylistings');
-        });
-    }
 });

@@ -12,12 +12,17 @@
                                 <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
                                     <i class="material-icons">clear</i>
                                 </button>
+                            {{else}}
+                                <button id="favorite-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
+                                    <i class="material-icons">{{#if favorited}}favorite{{else}}favorite_border{{/if}}</i>
+                                </button>
                             {{/if}}
 
                             <h5>{{title}}</h5>
                             <p>{{category}}</p>
                             <p><strong>${{price}}</strong></p>
                             <p>{{city}}, {{state}}</p>
+                            <p>{{date}}</p>
                             <div class="section">
                                 <label>Description</label>
                                 <p>{{description}}</p>
@@ -25,9 +30,9 @@
 
                             <div class="divider"></div>
                             <div class="section">
-                                <p><i class="material-icons listing-contact-icons">mail</i> {{email}}</p>
+                                <p><i class="material-icons listing-contact-icons">mail</i>{{email}}</p>
                                 {{#if phone}}
-                                    <p><i class="material-icons listing-contact-icons">phone</i> {{phone}}</p>
+                                    <p><i class="material-icons listing-contact-icons">phone</i>{{phone}}</p>
                                 {{/if}}
                             </div>
                         </div>

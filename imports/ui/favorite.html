@@ -1,33 +1,31 @@
-<template name="myListings">
+<template name="favorites">
     <div id="wrap" class="container">
-        <h4 class="animated fadeIn">My Listings</h4>
+        <h4 class="animated fadeIn">Favorites</h4>
         {{#if Template.subscriptionsReady}}
-            {{#if hasListings}}
+            {{#if hasFavorites}}
                 <div class="collection animated fadeIn">
                     {{#each listings}}
-                        {{> listingItem}}
+                        {{> favoriteItem}}
                     {{/each}}
                 </div>
             {{else}}
-                <p class="animated fadeIn">You have no listings.</p>
+                <p class="animated fadeIn">You have no favorites.</p>
             {{/if}}
         {{else}}
             {{> spinner}}
         {{/if}}
     </div>
-
-    {{> removeListingModal}}
 </template>
 
-<template name="listingItem">
+<template name="favoriteItem">
     <a class="collection-item avatar" href="/listing/{{_id}}">
         <img src="{{picture}}" class="circle">
         <span class="title">{{title}}</span>
         <p>${{price}}<br>
             {{date}}
         </p>
-        <a href="#!" class="secondary-content remove-listing">
-            <i class="material-icons black-text">clear</i>
+        <a href="#!" class="secondary-content remove-favorite">
+            <i class="material-icons black-text">favorite</i>
         </a>
     </a>
 </template>

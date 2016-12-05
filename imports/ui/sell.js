@@ -3,36 +3,18 @@ import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { HTTP } from 'meteor/http';
 import { Promise } from 'meteor/promise';
 import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize'
 
 import { Pictures } from '../api/pictures.js';
 
+import './states.js';
 import './categories.js';
 import './sell.html';
 import './picture-frame.html';
 
 Template.sell.onCreated(function() {
-    this.address = new ReactiveVar();
-
-    navigator.geolocation.getCurrentPosition(position => {
-        const coords = position.coords;
-        HTTP.get('https://maps.googleapis.com/maps/api/geocode/json', {params: {latlng: coords.latitude + ',' + coords.longitude}},
-            (err, res) => {
-                if (!err) {
-                    const results = res.data.results;
-                    for (let i = 0; i < results.length; i++) {
-                        if (results[i].types.indexOf('locality') > -1) {
-                            this.address.set(results[i].address_components);
-                            break;
-                        }
-                    }
-                }
-            });
-    });
-
     this.ready = new ReactiveVar(true);
 
     // client-side collection
@@ -49,16 +31,6 @@ Template.sell.onRendered(function () {
 Template.sell.helpers({
     ready() {
         return Template.instance().ready.get();
-    },
-    city() {
-        if (Template.instance().address.get()) {
-            return Template.instance().address.get()[0].long_name;
-        }
-    },
-    state() {
-        if (Template.instance().address.get()) {
-            return Template.instance().address.get()[2].long_name;
-        }
     },
     pictures() {
         return Template.instance().TempPhotos.find();

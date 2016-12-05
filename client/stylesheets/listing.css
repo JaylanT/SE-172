@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-#remove-listing > i {
+#remove-listing > i, #watch-listing > i {
     font-size: 1.6rem;
 }
 

@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check, Match } from 'meteor/check';
 
-import { Pictures } from '../api/pictures.js';
+import { Pictures } from './pictures.js';
 
 export const Listings = new Mongo.Collection('listings');
 

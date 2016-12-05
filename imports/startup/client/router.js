@@ -11,6 +11,7 @@ import '../../ui/listing.js';
 import '../../ui/signup.js';
 import '../../ui/login.js';
 import '../../ui/my-listings.js';
+import '../../ui/favorite.js';
 
 const loggedIn = FlowRouter.group({
     // Redirects to login if not logged in
@@ -60,5 +61,11 @@ loggedIn.route('/logout', {
 loggedIn.route('/mylistings', {
     action(params, queryParams) {
         BlazeLayout.render('mainLayout', { top: 'nav', content: 'myListings' });
+    }
+});
+
+loggedIn.route('/favorites', {
+    action(params, queryParams) {
+        BlazeLayout.render('mainLayout', { top: 'nav', content: 'favorites' });
     }
 });
