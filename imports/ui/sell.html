@@ -8,10 +8,11 @@
                     <div class="row">
                         <div class="input-field col s12 m6">
                             <input name="title" id="post-title" type="text" class="validate" required>
-                            <label for="post-title">Post title</label>
+                            <label for="post-title">Listing title</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <select id="post-category" name="category">
+                                <option value="" disabled selected>Select category</option>
                                 {{> categories}}
                             </select>
                             <label for="post-category">Category</label>

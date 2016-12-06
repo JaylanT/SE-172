@@ -1,15 +1,54 @@
 <template name="search">
     <div class="container" id="wrap">
-        {{#if Template.subscriptionsReady}}
-            {{#if foundListings}}
-                <div class="row">
-                    {{#each listings}}
-                        {{> listingCard}}
-                    {{/each}}
+        <form>
+            <div class="row">
+                <div class="input-field animated fadeIn col s12 m8 l9">
+                    <i class="material-icons prefix">search</i>
+                    <input id="search-input" type="text" name="search" value="{{query}}">
+                    <label class="{{#if query}}active{{/if}}" for="search-input">Search</label>
                 </div>
-            {{else}}
-                <p class="center">No listings found.</p>
-            {{/if}}
+                <div class="input-field col s12 m4 l3">
+                    <select id="search-category" name="category">
+                        <option value="" selected>All</option>
+                        {{> categories}}
+                    </select>
+                    <label for="search-category">Category</label>
+                </div>
+
+                <a id="show-filter" class="col black-text right">Filters<i class="material-icons">arrow_drop_down</i></a>
+                <div id="filter-options" class="col s12 animated fadeIn">
+                    <div id="filter-options-container" class="col s12">
+                        <a id="hide-filter" class="col s12"><i class="material-icons right black-text">close</i></a>
+                        <div class="input-field col s12 m6 l3">
+                            <input name="city" id="search-city" type="text" class="validate" value="{{city}}">
+                            <label class="{{#if city}}active{{/if}}" for="search-city">City</label>
+                        </div>
+                        <div class="input-field col s12 m6 l3">
+                            <select id="search-state" name="state">
+                                {{> states}}
+                            </select>
+                            <label for="search-state">State</label>
+                        </div>
+                        <div class="input-field col s6 l3">
+                            <input id="search-min-price" type="number" min="0" value="{{minPrice}}">
+                            <label class="{{#if minPrice}}active{{/if}}" for="search-min-price">Min price</label>
+                        </div>
+                        <div class="input-field col s6 l3">
+                            <input id="search-max-price" type="number" min="0" value="{{maxPrice}}">
+                            <label class="{{#if maxPrice}}active{{/if}}" for="search-max-price">Max price</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {{#if Template.subscriptionsReady}}
+            <p class="animated fadeIn">{{resultsCount}}</p>
+            <div class="row">
+                {{#each listings}}
+                    {{> listingCard}}
+                {{/each}}
+            </div>
         {{else}}
             {{> spinner}}
         {{/if}}

@@ -9,15 +9,12 @@
                         {{/if}}
                         <div class="col {{#if photoIds}}m6{{else}}m12{{/if}} s12">
                             {{#if isOwner owner}}
-                                <button id="remove-listing" class="btn-flat waves-effect waves-light waves-red darken-3 right">
-                                    <i class="material-icons">clear</i>
-                                </button>
-                                <button id="edit-listing" class="btn-flat waves-effect waves-light waves-green darken-3 right">
-                                    <i class="material-icons">edit</i>
-                                </button>
+                                {{> listingOptions}}
                             {{else}}
-                                <button id="favorite-listing" class="btn-flat waves-effect waves-light waves-red darken-4 right">
-                                    <i class="material-icons">{{#if favorited}}favorite{{else}}favorite_border{{/if}}</i>
+                                <button id="favorite-listing" class="btn-flat waves-effect waves-light right">
+                                    <i class="material-icons {{#if favorited}}yellow-text text-darken-3{{/if}}">
+                                        {{#if favorited}}star{{else}}star_border{{/if}}
+                                    </i>
                                 </button>
                             {{/if}}
 
@@ -33,7 +30,7 @@
 
                             <div class="divider"></div>
                             <div class="section">
-                                <p><i class="material-icons listing-contact-icons">mail</i>{{email}}</p>
+                                <p><i class="material-icons listing-contact-icons">mail</i><a href="mailto:{{email}}">{{email}}</a></p>
                                 {{#if phone}}
                                     <p><i class="material-icons listing-contact-icons">phone</i>{{phone}}</p>
                                 {{/if}}
@@ -59,4 +56,14 @@
             </a>
         {{/each}}
     </div>
+</template>
+
+<template name="listingOptions">
+    <button id="listing-options-btn" class='dropdown-button btn-flat waves-effect waves-light right' data-activates='dropdown1'>
+        <i class="material-icons">arrow_drop_down</i>
+    </button>
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a id="edit-listing">Edit</a></li>
+        <li><a id="remove-listing">Delete</a></li>
+    </ul>
 </template>

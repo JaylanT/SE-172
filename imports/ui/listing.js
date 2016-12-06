@@ -77,3 +77,10 @@ Template.photoCarousel.helpers({
             return picture.link();
     },
 });
+
+Template.listingOptions.onRendered(function () {
+    $('.dropdown-button').dropdown({
+            alignment: 'right'
+        }
+    );
+});

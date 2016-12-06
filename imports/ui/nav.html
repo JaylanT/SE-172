@@ -3,7 +3,7 @@
         <nav class="grey darken-4">
             <div class="nav-wrapper container">
                 <a href="/" class="brand-logo">MARKT</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="navbar-links" class="right hide-on-med-and-down">
                     <li><a id="search-btn"><i class="material-icons">search</i></a></li>
                     {{#if currentUser}}
@@ -11,10 +11,10 @@
                         <li><a href="/mylistings">My Listings</a></li>
                         <li><a href="/sell">Sell</a></li>
                     {{else}}
-                        <li><a id="login" href="#">Login/Register</a></li>
+                        <li><a id="login">Login/Register</a></li>
                     {{/if}}
                     <li>
-                        <a class="dropdown-button {{#unless currentUser}}hide{{/unless}}" href="#!"
+                        <a class="dropdown-button {{#unless currentUser}}hide{{/unless}}"
                            data-activates="nav-dropdown" data-beloworigin="true">{{#if currentUser}}{{currentUser.profile.firstName}}{{/if}}
                             <i class="material-icons right">arrow_drop_down</i>
                         </a>
@@ -31,17 +31,18 @@
 
                 <ul class="side-nav" id="mobile-nav">
                     {{#if currentUser}}
+                        <li><a href="/search"><i class="material-icons">search</i></a></li>
                         <li><a href="/favorites">Favorites</a></li>
                         <li><a href="/mylistings">My Listings</a></li>
                         <li><a href="/sell">Sell</a></li>
-                        <li><a class="red-text text-darken-3" href="/logout">Logout</a></li>
+                        <li><a href="/logout">Logout</a></li>
                     {{else}}
-                        <li><a id="login" href="#">Login/Register</a></li>
+                        <li><a id="login">Login/Register</a></li>
                     {{/if}}
                 </ul>
             </div>
             <ul id="nav-dropdown" class="dropdown-content">
-                <li><a class="red-text text-darken-3" href="/logout">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </nav>
     </div>

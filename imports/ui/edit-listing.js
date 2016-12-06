@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/materialize:materialize';
 
 import './edit-listing.html';
 

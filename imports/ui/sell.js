@@ -26,6 +26,7 @@ Template.sell.onRendered(function () {
         insertElement: (node, next) => $(node).hide().insertBefore(next).fadeIn(),
         removeElement: (node) => $(node).fadeOut(() => $(this).remove())
     };
+
     $('select').material_select();
 });
 

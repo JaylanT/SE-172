@@ -34,21 +34,48 @@ if (Meteor.isServer) {
         ]
     });
 
-    Meteor.publish('search', query => {
+    Meteor.publish('search', (query, city, state, category, minPrice, maxPrice) => {
+        check(query, String);
+        check(city, Match.Maybe(String));
+        check(state, Match.Maybe(String));
+        check(category, Match.Maybe(String));
+        check(minPrice, Match.Maybe(Number));
+        check(maxPrice, Match.Maybe(Number));
+
+        const options = {
+            $text: { $search: query }
+        };
+
+        if (city)
+            options.city_lower = city;
+
+        if (state)
+            options.state = state;
+
+        if (category)
+            options.category = category;
+
+        if (minPrice && maxPrice) {
+            options.$and = [{ price: {$gte: minPrice} }, { price: {$lte: maxPrice} }];
+        } else if (minPrice) {
+            options.price = { $gte: minPrice };
+        } else if (maxPrice) {
+            options.price = { $lte: maxPrice };
+        }
+
         return [
-            Listings.find({
-                $text: { $search: query }
-            }),
+            Listings.find(options),
             Pictures.find().cursor
         ]
     });
 
     Listings._ensureIndex({
         'title': 'text',
-        'category': 'text',
         'description': 'text',
-        'city': 'text',
-        'state': 'text',
+        'category': 1,
+        'city_lower': 1,
+        'state': 1,
+        'price': 1,
         'owner': 1
     });
 }
@@ -76,6 +103,7 @@ Meteor.methods({
 
         listing.createdAt = new Date();
         listing.owner = this.userId;
+        listing.city_lower = listing.city.toLowerCase();
 
         return Listings.insert(listing);
     },
@@ -101,6 +129,8 @@ Meteor.methods({
             phone: Match.Optional(String),
             email: String
         });
+
+        listingData.city_lower = listingData.city.toLowerCase();
 
         return Listings.update(listingId, { $set: listingData });
     }

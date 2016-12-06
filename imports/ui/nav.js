@@ -35,6 +35,7 @@ Template.nav.events({
         const query = target.search.value.trim();
 
         target.search.blur();
+        target.search.value = '';
 
         FlowRouter.go('/search', {}, {q: query});
     }
