@@ -7,7 +7,7 @@
                         {{#if photoIds}}
                             {{> photoCarousel}}
                         {{/if}}
-                        <div class="col {{#if photoIds}}m6{{else}}m12{{/if}} s12">
+                        <div class="col s12 {{#if photoIds}}l6{{/if}}">
                             {{#if isOwner owner}}
                                 {{> listingOptions}}
                             {{else}}
@@ -49,7 +49,7 @@
 </template>
 
 <template name="photoCarousel">
-    <div id="photo-carousel" class="col m6 s12">
+    <div id="photo-carousel" class="col l6 s12">
         {{#each photoIds}}
             <a data-lightbox="photos" href="{{picture this}}">
                 <img class="listing-photo" src="{{picture this}}" alt="{{picture.name}}">
