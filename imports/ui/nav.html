@@ -6,6 +6,11 @@
                 <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="navbar-links" class="right hide-on-med-and-down">
                     <li><a id="search-btn"><i class="material-icons">search</i></a></li>
+                    <li>
+                        <a class="dropdown-button" data-activates="nav-category" data-beloworigin="true">
+                            Categories <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
                     {{#if currentUser}}
                         <li><a href="/favorites">Favorites</a></li>
                         <li><a href="/mylistings">My Listings</a></li>
@@ -41,8 +46,13 @@
                     {{/if}}
                 </ul>
             </div>
+
             <ul id="nav-dropdown" class="dropdown-content">
                 <li><a href="/logout">Logout</a></li>
+            </ul>
+
+            <ul id="nav-category" class="dropdown-content">
+                {{> categoriesNav}}
             </ul>
         </nav>
     </div>

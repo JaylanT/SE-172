@@ -35,16 +35,17 @@ if (Meteor.isServer) {
     });
 
     Meteor.publish('search', (query, city, state, category, minPrice, maxPrice) => {
-        check(query, String);
+        check(query, Match.Maybe(String));
         check(city, Match.Maybe(String));
         check(state, Match.Maybe(String));
         check(category, Match.Maybe(String));
         check(minPrice, Match.Maybe(Number));
         check(maxPrice, Match.Maybe(Number));
 
-        const options = {
-            $text: { $search: query }
-        };
+        const options = {};
+
+        if (query)
+            options.$text = { $search: query };
 
         if (city)
             options.city_lower = city;

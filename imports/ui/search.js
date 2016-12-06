@@ -17,9 +17,7 @@ Template.search.onCreated(function () {
             minPrice = Number(FlowRouter.getQueryParam('minPrice')),
             maxPrice = Number(FlowRouter.getQueryParam('maxPrice'));
 
-        if (query) {
-            this.subscribe('search', query, city, state, category, minPrice, maxPrice);
-        }
+        this.subscribe('search', query, city, state, category, minPrice, maxPrice);
     });
 });
 
@@ -65,8 +63,7 @@ Template.search.events({
 
             const query = target.value.trim();
 
-            if (query)
-                FlowRouter.setQueryParams({q: query});
+            FlowRouter.setQueryParams({q: query});
         }, 450),
     'change #search-category'(event) {
         const target = event.target;

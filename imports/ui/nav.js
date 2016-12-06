@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
 
+import './categories-nav.js';
 import './nav.html';
 
 Template.nav.onRendered(() => {
