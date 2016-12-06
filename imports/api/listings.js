@@ -93,7 +93,7 @@ Meteor.methods({
             email: String,
             photoIds: Match.Where(ids => {
                 check(ids, [String]);
-                return ids.length < 5;
+                return ids.length < 9;
             })
         });
 

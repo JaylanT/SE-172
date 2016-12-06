@@ -38,12 +38,12 @@ Template.sell.helpers({
         return Template.instance().TempPhotos.find();
     },
     picLimitLabel() {
-        if (!Template.instance().TempPhotos.findOne()) return 'Add up to 4 photos';
+        if (!Template.instance().TempPhotos.findOne()) return 'Add up to 8 photos';
 
-        return 'Add up to ' + (4 - Template.instance().TempPhotos.find().count()) + ' more';
+        return 'Add up to ' + (8 - Template.instance().TempPhotos.find().count()) + ' more';
     },
     picLimitReached() {
-        return Template.instance().TempPhotos.find().count() === 4;
+        return Template.instance().TempPhotos.find().count() === 8;
     },
 });
 
@@ -56,7 +56,7 @@ Template.sell.events({
                 return;
             }
         }
-        if (files.length + template.TempPhotos.find().count() > 4) {
+        if (files.length + template.TempPhotos.find().count() > 8) {
             Materialize.toast('Picture limit exceeded.', 4000, 'toast-error');
             return;
         }
