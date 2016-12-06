@@ -107,9 +107,6 @@ Template.search.events({
         $('#filter-options').slideToggle(300);
     },
     'click #hide-filter'() {
-        $('#filter-options')
-            .toggleClass('fadeOut')
-            .slideUp(300)
-            .toggleClass('fadeOut');
+        $('#filter-options').slideUp(300);
     }
 });
