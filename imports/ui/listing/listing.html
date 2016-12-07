@@ -11,11 +11,13 @@
                             {{#if isOwner owner}}
                                 {{> listingOptions}}
                             {{else}}
-                                <button id="favorite-listing" class="btn-flat waves-effect waves-light right">
-                                    <i class="material-icons {{#if favorited}}yellow-text text-darken-3{{/if}}">
-                                        {{#if favorited}}star{{else}}star_border{{/if}}
-                                    </i>
-                                </button>
+                                {{#if currentUser}}
+                                    <button id="favorite-listing" class="btn-flat waves-effect waves-light right">
+                                        <i class="material-icons {{#if favorited}}yellow-text text-darken-3{{/if}}">
+                                            {{#if favorited}}star{{else}}star_border{{/if}}
+                                        </i>
+                                    </button>
+                                {{/if}}
                             {{/if}}
 
                             <h5>{{title}}</h5>

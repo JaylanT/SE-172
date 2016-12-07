@@ -7,10 +7,10 @@ import { Promise } from 'meteor/promise';
 import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize'
 
-import { Pictures } from '../api/pictures.js';
+import { Pictures } from '../../api/pictures.js';
 
-import './states.js';
-import './categories.js';
+import '../select_options/states.js';
+import '../select_options/categories.js';
 import './sell.html';
 import './picture-frame.html';
 

@@ -3,16 +3,16 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/spinner.js';
-import '../../ui/main-layout.js';
-import '../../ui/nav.js';
-import '../../ui/sell.js';
-import '../../ui/home.js';
-import '../../ui/listing.js';
-import '../../ui/signup.js';
-import '../../ui/login.js';
-import '../../ui/my-listings.js';
-import '../../ui/favorite.js';
-import '../../ui/search.js';
+import '../../ui/layouts/main-layout.js';
+import '../../ui/layouts/nav.js';
+import '../../ui/sell/sell.js';
+import '../../ui/home/home.js';
+import '../../ui/listing/listing.js';
+import '../../ui/account/signup.js';
+import '../../ui/account/login.js';
+import '../../ui/my_listings/my-listings.js';
+import '../../ui/favorites/favorite.js';
+import '../../ui/search/search.js';
 
 const loggedIn = FlowRouter.group({
     // Redirects to login if not logged in

@@ -3,12 +3,12 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $ } from 'meteor/jquery';
 
-import { Listings } from '../api/listings.js';
-import { Pictures } from '../api/pictures.js';
-import { Favorites } from '../api/favorites.js';
+import { Listings } from '../../api/listings.js';
+import { Pictures } from '../../api/pictures.js';
+import { Favorites } from '../../api/favorites.js';
 
 import './listing.html';
-import './remove-listing-modal.html';
+import '../components/remove-listing-modal.html';
 import './edit-listing.js';
 
 Template.listing.onCreated(function () {

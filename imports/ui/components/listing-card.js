@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 
-import { Pictures } from '../api/pictures.js';
+import { Pictures } from '../../api/pictures.js';
 
 import './listing-card.html';
 

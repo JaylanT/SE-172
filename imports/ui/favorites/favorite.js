@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { Listings } from '../api/listings.js';
-import { Pictures } from '../api/pictures.js';
-import { Favorites } from '../api/favorites.js';
+import { Listings } from '../../api/listings.js';
+import { Pictures } from '../../api/pictures.js';
+import { Favorites } from '../../api/favorites.js';
 
 import './favorite.html';
 

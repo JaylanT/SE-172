@@ -2,10 +2,10 @@ import { Template } from 'meteor/templating';
 import { _ } from 'meteor/erasaur:meteor-lodash';
 import { $ } from 'meteor/jquery';
 
-import { Listings } from '../api/listings.js';
+import { Listings } from '../../api/listings.js';
 
-import './categories.js';
-import './states.js';
+import '../select_options/categories.js';
+import '../select_options/states.js';
 import './search.html';
 
 Template.search.onCreated(function () {

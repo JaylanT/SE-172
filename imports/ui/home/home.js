@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating';
 
-import { Listings } from '../api/listings.js';
+import { Listings } from '../../api/listings.js';
 
-
+import '../components/listing-card.js';
 import './home.html';
-import './listing-card.js';
 
 Template.listings.onCreated(function () {
     this.subscribe('listings');

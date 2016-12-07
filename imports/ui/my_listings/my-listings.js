@@ -4,11 +4,11 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize'
 
-import { Listings } from '../api/listings.js';
-import { Pictures } from '../api/pictures.js';
+import { Listings } from '../../api/listings.js';
+import { Pictures } from '../../api/pictures.js';
 
 import './my-listings.html';
-import './remove-listing-modal.html';
+import '../components/remove-listing-modal.html';
 
 Template.myListings.onCreated(function () {
     this.subscribe('myListings');
